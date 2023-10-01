@@ -26,6 +26,7 @@ class User extends Authenticatable implements LaratrustUser
         'name',
         'email',
         'password',
+        'status'
     ];
 
     /**
@@ -47,4 +48,20 @@ class User extends Authenticatable implements LaratrustUser
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    public function ads()
+    {
+        return $this->hasMany(Ad::class);
+    }
+
+    public function ad_clicks()
+    {
+        return $this->hasMany(AdClick::class);
+    }
+
+    public function ad_views()
+    {
+        return $this->hasMany(AdView::class);
+    }
 }
