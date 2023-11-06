@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\HomeController as DashboardHomeController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Home\HomeController;
@@ -37,6 +38,7 @@ Route::prefix('dashboard')
     ->group(function () {
         Route::get('/home', [DashboardHomeController::class, 'index'])->name('home');
         Route::resource('users', UserController::class);
+        Route::resource('categories', CategoryController::class);
         Route::post('unban/{id}', [UserController::class, 'unban'])->name('users.unban');
         Route::post('ban/{id}', [UserController::class, 'ban'])->name('users.ban');
 

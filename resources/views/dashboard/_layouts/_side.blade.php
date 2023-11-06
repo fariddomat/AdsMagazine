@@ -16,11 +16,11 @@
                         data-i18n="">Dashboard</span>
                 </a>
             </li>
-            {{-- <li class=" nav-item  {{ Request::is('dashboard/categories*') ? 'active' : '' }} "><a
+             <li class=" nav-item  {{ Request::is('dashboard/categories*') ? 'active' : '' }} "><a
                     href="{{ route('dashboard.categories.index') }}"><i class="fa fa-building-o"></i><span
                         class="menu-title" data-i18n="">Categories</span></a>
             </li>
-
+{{--
             <li class=" nav-item  {{ Request::is('dashboard/gifts*') ? 'active' : '' }} "><a
                     href="{{ route('dashboard.gifts.index') }}"><i class="fa fa-gift"></i><span class="menu-title"
                         data-i18n="">Gifts</span></a>
