@@ -12,6 +12,13 @@ class AdSlot extends Model
 
     protected $guarded=[];
 
+    public function scopeWhenSearch($query, $search)
+    {
+        return $query->when($search,function($q) use ($search){
+            return $q->where('name','like',"%$search%");
+        });
+    }
+    
     public function ads()
     {
         return $this->hasMany(Ad::class);

@@ -20,6 +20,11 @@
                     href="{{ route('dashboard.categories.index') }}"><i class="fa fa-building-o"></i><span
                         class="menu-title" data-i18n="">Categories</span></a>
             </li>
+
+            <li class=" nav-item  {{ Request::is('dashboard/adSlots*') ? 'active' : '' }} "><a
+                href="{{ route('dashboard.adSlots.index') }}"><i class="fa fa-building-o"></i><span
+                    class="menu-title" data-i18n="">Slots</span></a>
+        </li>
 {{--
             <li class=" nav-item  {{ Request::is('dashboard/gifts*') ? 'active' : '' }} "><a
                     href="{{ route('dashboard.gifts.index') }}"><i class="fa fa-gift"></i><span class="menu-title"
