@@ -13,4 +13,16 @@ class HomeController extends Controller
     public function categories() {
         return view('home.categories');
     }
+    public function show() {
+        return view('home.show');
+    }
+    public function search() {
+        return view('home.search');
+    }
+    public function about() {
+        return view('home.about');
+    }
+    public function contact() {
+        return view('home.contact');
+    }
 }

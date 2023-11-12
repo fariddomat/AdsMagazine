@@ -21,6 +21,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/categories', [HomeController::class, 'categories'])->name('categories');
+Route::get('/show', [HomeController::class, 'show'])->name('show');
+Route::get('/search', [HomeController::class, 'search'])->name('search');
+Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
