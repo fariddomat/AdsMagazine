@@ -52,6 +52,7 @@
                                     <th scope="col">User</th>
                                     <th scope="col">Category</th>
                                     <th scope="col">AdSlot</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>

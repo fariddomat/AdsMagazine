@@ -25,16 +25,14 @@
                                         {{ old('description') }}
                                         </textarea>
 
-                                        <h5 class="mt-2">Media (Image/Video)</h5>
-                                        <input value="{{ old('media') }}" name="media" type="file"
-                                            class="form-control" id="basicInput" required>
 
                                         <h5 class="mt-2">Price</h5>
                                         <input value="{{ old('price') }}" name="price" type="number"
                                             class="form-control" id="basicInput" required>
+                                        <h5 class="mt-2">Media (Image)</h5>
+                                        <input value="{{ old('media') }}" name="media" type="file"
+                                            class="form-control" id="basicInput" required>
 
-                                        <button class="btn btn-icon btn-info mr-1 mt-2"> Create <i class="fa fa-save"
-                                                style="position: relative"></i></button>
                                     </fieldset>
                                 </div>
 
@@ -61,6 +59,9 @@
                                         </select>
 
                                     </fieldset>
+
+                                    <button class="btn btn-icon btn-info mr-1 mt-2"> Create <i class="fa fa-save"
+                                        style="position: relative"></i></button>
                                 </div>
                             </div>
                         </form>

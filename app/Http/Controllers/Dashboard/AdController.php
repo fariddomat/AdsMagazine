@@ -9,6 +9,9 @@ use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
 class AdController extends Controller
 {
     /**
@@ -17,7 +20,7 @@ class AdController extends Controller
     public function index()
     {
 
-        $ads = Ad::all();
+        $ads = Ad::paginate(10);
         return view('dashboard.ads.index', compact('ads'));
     }
 
@@ -39,26 +42,20 @@ class AdController extends Controller
     {
 
         // Validate the request
-        $validatedData = $request->validate([
+        $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
-            'media_url' => 'nullable',
+            'media' => 'nullable',
             'price' => 'required|numeric',
             'user_id' => 'required|exists:users,id',
             'category_id' => 'required|exists:categories,id',
             'ad_slot_id' => 'required|exists:ad_slots,id',
         ]);
 
+
+
         // Create a new ad
-        Ad::create([
-            'title' => $validatedData['title'],
-            'description' => $validatedData['description'],
-            'media_url' => $validatedData['media_url'],
-            'price' => $validatedData['price'],
-            'user_id' => $validatedData['user_id'],
-            'category_id' => $validatedData['category_id'],
-            'ad_slot_id' => $validatedData['ad_slot_id'],
-        ]);
+        Ad::create($request_data);
 
         // Redirect to the ads index page or any other desired route
         return redirect()->route('dashboard.ads.index')->with('success', 'Ad created successfully');
@@ -97,23 +94,26 @@ class AdController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
-            'media_url' => 'nullable',
+            'media' => 'nullable',
             'price' => 'required|numeric',
             'user_id' => 'required|exists:users,id',
             'category_id' => 'required|exists:categories,id',
             'ad_slot_id' => 'required|exists:ad_slots,id',
         ]);
 
-        // Create a new ad
-        $ad->update([
-            'title' => $validatedData['title'],
-            'description' => $validatedData['description'],
-            'media_url' => $validatedData['media_url'],
-            'price' => $validatedData['price'],
-            'user_id' => $validatedData['user_id'],
-            'category_id' => $validatedData['category_id'],
-            'ad_slot_id' => $validatedData['ad_slot_id'],
-        ]);
+        $request_data = $request->except(['media']);
+
+        if ($request->media) {
+            Storage::disk('public')->delete('ads/' . $ad->media_url);
+            $media = Image::make($request->media)->resize(500, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })
+                ->encode('webp', 90);
+            Storage::disk('public')->put('ads/'. $request->media->hashName(), (string)$media, 'public');
+            $request_data['media_url'] = $request->media->hashName();
+        }
+        // Update ad
+        $ad->update($request_data);
 
         // Redirect to the ads index page or any other desired route
         return redirect()->route('dashboard.ads.index')->with('success', 'Ad Updated successfully');
