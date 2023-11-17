@@ -6,34 +6,34 @@
             <div class="col-xl-12 col-lg-12 col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Add AdSlot</h4>
+                        <h4 class="card-title">Edit ad</h4>
                     </div>
-                    <div class="card-block" dir="" style="">
+                    <div class="card-block" >
                         <div class="card-body col-lg-6">
                             <fieldset class="form-group">
-                                <form action="{{ route('dashboard.adSlots.store') }}" method="post"
+                                <form action="{{ route('dashboard.ads.update', $ad->id) }}" method="post"
                                     enctype="multipart/form-data">
                                     @csrf
-                                    @method('POST')
+                                    @method('PUT')
 
                                     @include('dashboard._layouts._error')
                                     <h5 class="mt-2">Name</h5>
-                                    <input value="{{ old('name') }}" name="name" type="text" class="form-control"
-                                        id="basicInput" required>
+                                    <input value="{{ old('name', $ad->name) }}" name="name" type="text" class="form-control" id="basicInput" required>
 
                                     <h5 class="mt-2">Description</h5>
                                     <textarea name="description" id="" class="form-control">
-                                        {{ old('description') }}
+                                        {{ old('description', $ad->description) }}
                                     </textarea>
 
                                     <h5 class="mt-2">Price</h5>
-                                    <input value="{{ old('price') }}" name="price" type="number" class="form-control"
+                                    <input value="{{ old('price', $ad->price) }}" name="price" type="number" class="form-control"
                                         id="basicInput" required>
                                     <h5 class="mt-2">Duration (Days)</h5>
-                                    <input value="{{ old('duration') }}" name="duration" type="number" class="form-control"
+                                    <input value="{{ old('duration', $ad->duration) }}" name="duration" type="number" class="form-control"
                                         id="basicInput" required>
 
-                                    <button class="btn btn-icon btn-info mr-1 mt-2"> Create <i class="fa fa-save"
+                                    <button
+                                        class="btn btn-icon btn-info mr-1 mt-2"> Edit <i class="fa fa-edit"
                                             style="position: relative"></i></button>
                                 </form>
                             </fieldset>

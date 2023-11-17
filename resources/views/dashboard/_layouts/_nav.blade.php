@@ -1,4 +1,4 @@
-<nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-dark">
+<nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-dark">
     <div class="navbar-wrapper">
         <div class="navbar-container content" style="">
             <div class="collapse navbar-collapse show" id="navbar-mobile">

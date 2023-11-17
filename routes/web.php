@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\AdController;
 use App\Http\Controllers\Dashboard\AdSlotController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\HomeController as DashboardHomeController;
@@ -45,6 +46,7 @@ Route::prefix('dashboard')
         Route::resource('categories', CategoryController::class);
 
         Route::resource('adSlots', AdSlotController::class);
+        Route::resource('ads', AdController::class);
 
         Route::resource('users', UserController::class);
         Route::post('unban/{id}', [UserController::class, 'unban'])->name('users.unban');

@@ -1,4 +1,4 @@
-<div class="main-menu menu-fixed menu-dark menu-accordion    menu-shadow " data-scroll-to-active="true" style="">
+<div class="main-menu menu-fixed menu-light menu-accordion    menu-shadow " data-scroll-to-active="true" style="">
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item mr-auto"><a class="navbar-brand" href="{{ route('dashboard.home') }}">
@@ -16,16 +16,20 @@
                         data-i18n="">Dashboard</span>
                 </a>
             </li>
-             <li class=" nav-item  {{ Request::is('dashboard/categories*') ? 'active' : '' }} "><a
+            <li class=" nav-item  {{ Request::is('dashboard/categories*') ? 'active' : '' }} "><a
                     href="{{ route('dashboard.categories.index') }}"><i class="fa fa-building-o"></i><span
                         class="menu-title" data-i18n="">Categories</span></a>
             </li>
 
             <li class=" nav-item  {{ Request::is('dashboard/adSlots*') ? 'active' : '' }} "><a
-                href="{{ route('dashboard.adSlots.index') }}"><i class="fa fa-building-o"></i><span
-                    class="menu-title" data-i18n="">Slots</span></a>
-        </li>
-{{--
+                    href="{{ route('dashboard.adSlots.index') }}"><i class="fa fa-building-o"></i><span
+                        class="menu-title" data-i18n="">Slots</span></a>
+            </li>
+            <li class=" nav-item  {{ Request::is('dashboard/ads*') ? 'active' : '' }} "><a
+                    href="{{ route('dashboard.ads.index') }}"><i class="fa fa-film"></i><span
+                        class="menu-title" data-i18n="">Ads</span></a>
+            </li>
+            {{--
             <li class=" nav-item  {{ Request::is('dashboard/gifts*') ? 'active' : '' }} "><a
                     href="{{ route('dashboard.gifts.index') }}"><i class="fa fa-gift"></i><span class="menu-title"
                         data-i18n="">Gifts</span></a>
