@@ -77,7 +77,12 @@ class AdController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $users=User::all();
+        $categories=Category::all();
+        $adSlots=AdSlot::all();
+        $ad=Ad::findOrFail($id);
+        return view('dashboard.ads.show', compact('ad', 'users', 'categories', 'adSlots'));
+
     }
 
     /**
@@ -138,6 +143,24 @@ class AdController extends Controller
         $ad=Ad::findOrFail($id);
         $ad->delete();
         return redirect()->route('dashboard.ads.index')->with('success', 'Ad Deleted successfully');
+
+    }
+    public function accept(string $id)
+    {
+        $ad=Ad::findOrFail($id);
+        $ad->update([
+            'status'=>'accept'
+        ]);
+        return redirect()->route('dashboard.ads.index')->with('success', 'Ad Accepted successfully');
+
+    }
+    public function reject(string $id)
+    {
+        $ad=Ad::findOrFail($id);
+        $ad->update([
+            'status'=>'reject'
+        ]);
+        return redirect()->route('dashboard.ads.index')->with('success', 'Ad Rejected successfully');
 
     }
 }

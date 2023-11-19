@@ -59,6 +59,8 @@ Route::prefix('dashboard')
 
         Route::resource('adSlots', AdSlotController::class);
         Route::resource('ads', AdController::class);
+        Route::get('ads/accept/{id}', [AdController::class, 'accept'])->name('ads.accept');
+        Route::get('ads/reject/{id}', [AdController::class, 'reject'])->name('ads.reject');
 
         Route::resource('users', UserController::class);
         Route::post('unban/{id}', [UserController::class, 'unban'])->name('users.unban');
