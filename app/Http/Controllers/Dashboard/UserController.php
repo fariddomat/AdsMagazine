@@ -122,7 +122,7 @@ class UserController extends Controller
         $user=User::find($id);
 
 
-        $request_data = $request->except(['media']);
+        $request_data = $request->except(['img']);
         if ($request->img) {
             Storage::disk('public')->delete('users/' . $user->img);
             $img = Image::make($request->img)->resize(500, null, function ($constraint) {

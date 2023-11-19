@@ -11,7 +11,7 @@
                         <i class="fa fa-align-justify"></i> Update Profile
                     </div>
                     <div class="card-block " style="margin: 0 25px">
-                        <form action="{{ route('dashboard.profile.update') }}" method="POST">
+                        <form action="{{ route('dashboard.profile.update') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('post')
                             @include('dashboard._layouts._error')
@@ -42,6 +42,24 @@
                                 <input type="password" class="form-control" name="password_confirmation" id="password_c"
                                     autocomplete="new-password">
                             </div>
+                            <div class="form-group">
+                                <label for="name">description</label>
+                               <textarea name="description" class="form-control">{{ old('description', $user->description) }}</textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">mobile</label>
+                                <input type="text" class="form-control" name="mobile" id="mobile" value="{{ old('mobile', $user->mobile) }}"
+                                    aria-describedby="helpId" placeholder="">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Image</label>
+                                <input type="file" class="form-control" name="img" id="img" value="{{ old('img') }}"
+                                    aria-describedby="helpId" placeholder="">
+                            </div>
+                            <img src="{{ asset('storage/users/'.$user->img) }}" alt="" style="max-width: 250px">
+
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>
                                     Update</button>
