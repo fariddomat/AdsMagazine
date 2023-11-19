@@ -33,6 +33,17 @@
         .menu {
             /* background-color: #fffd70; */
         }
+
+        .bg-blue{
+            background-color: #626EEF;
+        }.bg-purple{
+            background-color: #8e44ad;
+        }.bg-default{
+            background-color: #F73F52;
+
+        }.bg-orange{
+            background-color: #FC624D;
+        }
     </style>
     @yield('styles')
 </head>

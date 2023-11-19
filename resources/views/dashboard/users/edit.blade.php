@@ -10,7 +10,7 @@
                     <p class="card-category">update user with Role</p>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('dashboard.users.update', $user->id) }}" method="POST">
+                    <form action="{{ route('dashboard.users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         @include('dashboard._layouts._error')
@@ -26,7 +26,7 @@
                             <input type="email" class="form-control" name="email" id="email"
                                 value="{{ old('email', $user->email) }}" aria-describedby="helpId" placeholder="">
                         </div>
-                       
+
 
                         {{-- Roles --}}
                         <div class="form-group">
@@ -39,6 +39,23 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="name">description</label>
+                           <textarea name="description" class="form-control">{{ old('description', $user->description) }}</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">mobile</label>
+                            <input type="text" class="form-control" name="mobile" id="mobile" value="{{ old('mobile', $user->mobile) }}"
+                                aria-describedby="helpId" placeholder="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">Image</label>
+                            <input type="file" class="form-control" name="img" id="img" value="{{ old('img') }}"
+                                aria-describedby="helpId" placeholder="">
+                        </div>
+                        <img src="{{ asset('storage/users/'.$user->img) }}" alt="" style="max-width: 250px">
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>
                                 Edit</button>

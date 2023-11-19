@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Role;
 use App\Models\User;
 use Session;
+
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 class UserController extends Controller
 {
 
@@ -60,7 +63,17 @@ class UserController extends Controller
             'role_id'=>'required|numeric',
         ]);
         $request->merge(['password'=>bcrypt($request->password)]);
-        $user=User::create($request->all());
+        $request_data = $request->except(['img']);
+
+        if ($request->img) {
+            $img = Image::make($request->img)->resize(500, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })
+                ->encode('webp', 90);
+            Storage::disk('public')->put('users/'. $request->img->hashName(), (string)$img, 'public');
+            $request_data['img'] = $request->img->hashName();
+        }
+        $user=User::create($request_data);
         $user->addRole($request->role_id);
         session()->flash('success','Successfully Created !');
         return redirect()->route('dashboard.users.index');
@@ -108,7 +121,19 @@ class UserController extends Controller
         ]);
         $user=User::find($id);
 
-        $user->update($request->all());
+
+        $request_data = $request->except(['media']);
+        if ($request->img) {
+            Storage::disk('public')->delete('users/' . $user->img);
+            $img = Image::make($request->img)->resize(500, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })
+                ->encode('webp', 90);
+            Storage::disk('public')->put('users/'. $request->img->hashName(), (string)$img, 'public');
+            $request_data['img'] = $request->img->hashName();
+        }
+
+        $user->update($request_data);
         $user->syncRoles([$request->role_id]);
         session()->flash('success','Successfully updated !');
         return redirect()->route('dashboard.users.index');

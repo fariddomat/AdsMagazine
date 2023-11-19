@@ -2,9 +2,9 @@ document.getElementsByTagName("body")[0].innerHTML += '<div class="demo-settings
 
 document.getElementsByClassName("demo-settings-toggle")[0].addEventListener("click", (e) => {
 	if(document.getElementsByClassName("demo-settings")[0].classList.contains("active")) {
-	  document.getElementsByClassName("demo-settings")[0].classList.remove('active');	
+	  document.getElementsByClassName("demo-settings")[0].classList.remove('active');
 	}else{
-	  document.getElementsByClassName("demo-settings")[0].classList += ' active';	
+	  document.getElementsByClassName("demo-settings")[0].classList += ' active';
 	}
 });
 
@@ -22,5 +22,10 @@ for (var i = toggler.length - 1; i >= 0; i--) {
 		localStorage.setItem("skin", _this.attributes.title.nodeValue.toLowerCase());
 	 	document.getElementsByTagName("body")[0].classList = document.getElementsByTagName("body")[0].className.replace(/(^|\s)skin-\S+/g, '');
 	 	document.getElementsByTagName("body")[0].classList += ' skin-' + _this.attributes.title.nodeValue.toLowerCase();
+
+
+	 	document.getElementsByClassName("firstbar")[0].classList = document.getElementsByClassName("firstbar")[0].className.replace(/(^|\s)bg-\S+/g, '');
+         document.getElementsByClassName("firstbar")[0].classList += ' bg-' + _this.attributes.title.nodeValue.toLowerCase();
+        // firstbar
 	});
- } 
+ }

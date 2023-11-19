@@ -100,7 +100,7 @@
                                                             aria-hidden="true"></i> Delete</button>
                                                 </form>
 
-                                                @if ($user->status=='active')
+                                                @if ($user->status!='ban')
                                                 <form action="{{ route('dashboard.users.ban', $user->id) }}" method="POST"
                                                     style="display: inline-block">
                                                     @csrf

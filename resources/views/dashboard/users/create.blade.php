@@ -10,7 +10,7 @@
                     <p class="card-category">add new user with Role</p>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('dashboard.users.store') }}" method="POST">
+                    <form action="{{ route('dashboard.users.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('post')
                         @include('dashboard._layouts._error')
@@ -35,7 +35,7 @@
                             <input type="password" class="form-control" name="password_confirmation" id="password_c"
                                 placeholder="">
                         </div>
-                       
+
                         {{-- Roles --}}
                         <div class="form-group">
                             <label for="role">Roles</label>
@@ -46,6 +46,22 @@
                                 @endforeach
                             </select>
                             {{-- <a href="{{ route('dashboard.roles.create') }}">Create new Role</a> --}}
+                        </div>
+                        <div class="form-group">
+                            <label for="name">description</label>
+                           <textarea name="description" class="form-control">{{ old('description') }}</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">mobile</label>
+                            <input type="text" class="form-control" name="mobile" id="mobile" value="{{ old('mobile') }}"
+                                aria-describedby="helpId" placeholder="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">Image</label>
+                            <input type="file" class="form-control" name="img" id="img" value="{{ old('img') }}"
+                                aria-describedby="helpId" placeholder="">
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>

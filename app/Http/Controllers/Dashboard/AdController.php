@@ -54,6 +54,16 @@ class AdController extends Controller
 
 
 
+        $request_data = $request->except(['media']);
+
+        if ($request->media) {
+            $media = Image::make($request->media)->resize(500, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })
+                ->encode('webp', 90);
+            Storage::disk('public')->put('ads/'. $request->media->hashName(), (string)$media, 'public');
+            $request_data['media_url'] = $request->media->hashName();
+        }
         // Create a new ad
         Ad::create($request_data);
 
