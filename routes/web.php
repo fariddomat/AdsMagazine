@@ -4,6 +4,7 @@ use App\Http\Controllers\Dashboard\AdController;
 use App\Http\Controllers\Dashboard\AdSlotController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\HomeController as DashboardHomeController;
+use App\Http\Controllers\Dashboard\ProfileController as DashboardProfileController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Home\HomeController;
@@ -65,8 +66,12 @@ Route::prefix('dashboard')
 
         Route::get('about', [SettingController::class, 'about'])->name('about');
         Route::get('social', [SettingController::class, 'social'])->name('social');
-
         Route::post('settings', [SettingController::class, 'settings'])->name('settings');
+
+
+        Route::get('profile/edit', [DashboardProfileController::class, 'edit'])->name('profile.edit');
+        Route::post('profile/update', [DashboardProfileController::class, 'update'])->name('profile.update');
+
 
 
     });

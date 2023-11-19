@@ -26,35 +26,31 @@
                         class="menu-title" data-i18n="">Slots</span></a>
             </li>
             <li class=" nav-item  {{ Request::is('dashboard/ads*') ? 'active' : '' }} "><a
-                    href="{{ route('dashboard.ads.index') }}"><i class="fa fa-film"></i><span
-                        class="menu-title" data-i18n="">Ads</span></a>
-            </li>
-            {{--
-            <li class=" nav-item  {{ Request::is('dashboard/gifts*') ? 'active' : '' }} "><a
-                    href="{{ route('dashboard.gifts.index') }}"><i class="fa fa-gift"></i><span class="menu-title"
-                        data-i18n="">Gifts</span></a>
+                    href="{{ route('dashboard.ads.index') }}"><i class="fa fa-film"></i><span class="menu-title"
+                        data-i18n="">Ads</span></a>
             </li>
 
-            <li class=" nav-item  {{ Request::is('dashboard/orders*') ? 'active' : '' }} "><a
-                    href="{{ route('dashboard.orders.index') }}"><i class="fa fa-shopping-cart"></i><span
-                        class="menu-title" data-i18n="">Orders</span></a>
-            </li>
-            <li class=" nav-item  {{ Request::is('dashboard/myOrder') ? 'active' : '' }} "><a
-                    href="{{ route('dashboard.orders.myOrder') }}"><i class="fa fa-shopping-cart"></i><span
-                        class="menu-title" data-i18n="">my Orders</span></a>
-            </li>
-
-            <li class=" nav-item {{ Request::is('dashboard/coupons*') ? 'active' : '' }} "><a
-                    href="{{ route('dashboard.coupons.index') }}"><i class="fa fa-tags"></i><span class="menu-title"
-                        data-i18n="">Coupons</span></a>
-            <li class=" nav-item {{ Request::is('dashboard/reports') ? 'active' : '' }} "><a
-                    href="{{ route('dashboard.reports') }}"><i class="fa fa-ban"></i><span class="menu-title"
-                        data-i18n="">Reports</span></a>
-            </li> --}}
             <li class=" nav-item {{ Request::is('dashboard/users*') ? 'active' : '' }} "><a
                     href="{{ route('dashboard.users.index') }}"><i class="ft-users"></i><span class="menu-title"
                         data-i18n="">Users</span></a>
             </li>
+
+            @if (Auth::user()->hasRole('superadministrator'))
+                <li class=" nav-item  {{ Request::is('dashboard/about*') ? 'active' : '' }} "><a
+                        href="{{ route('dashboard.about') }}"><i class="fa fa-info"></i><span class="menu-title"
+                            data-i18n="">About</span></a>
+                </li>
+
+                <li class=" nav-item  {{ Request::is('dashboard/social*') ? 'active' : '' }} "><a
+                        href="{{ route('dashboard.social') }}"><i class="fa fa-share"></i><span class="menu-title"
+                            data-i18n="">Social</span></a>
+                </li>
+            @endif
+
+            <li class=" nav-item {{ Request::is('dashboard/profile*') ? 'active' : '' }} "><a
+                href="{{ route('dashboard.profile.edit') }}"><i class="ft-users"></i><span class="menu-title"
+                    data-i18n="">Profile</span></a>
+        </li>
         </ul>
     </div><a class="btn btn-primary btn-block btn-glow btn-upgrade-pro mx-1" href="/" target="_blank">Home</a>
     <div class="navigation-background"></div>
