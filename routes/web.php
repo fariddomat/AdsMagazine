@@ -4,9 +4,11 @@ use App\Http\Controllers\Dashboard\AdController;
 use App\Http\Controllers\Dashboard\AdSlotController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\HomeController as DashboardHomeController;
+use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +21,16 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/clear', function () {
 
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('config:cache');
+    Artisan::call('view:clear');
+    Artisan::call('route:clear');
+    // shell_exec('composer update');
+    return "Cleared!";
+});
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/categories', [HomeController::class, 'categories'])->name('categories');
 Route::get('/show', [HomeController::class, 'show'])->name('show');
@@ -52,7 +63,14 @@ Route::prefix('dashboard')
         Route::post('unban/{id}', [UserController::class, 'unban'])->name('users.unban');
         Route::post('ban/{id}', [UserController::class, 'ban'])->name('users.ban');
 
+        Route::get('about', [SettingController::class, 'about'])->name('about');
+        Route::get('social', [SettingController::class, 'social'])->name('social');
+
+        Route::post('settings', [SettingController::class, 'settings'])->name('settings');
+
 
     });
+
+
 
 require __DIR__.'/auth.php';
