@@ -11,6 +11,13 @@ document.getElementsByClassName("demo-settings-toggle")[0].addEventListener("cli
 if(localStorage.getItem("skin")) {
  	document.getElementsByTagName("body")[0].classList = document.getElementsByTagName("body")[0].className.replace(/(^|\s)skin-\S+/g, '');
 	document.getElementsByTagName("body")[0].classList += " skin-" + localStorage.getItem("skin");
+
+}
+
+if(localStorage.getItem("bg")) {
+    document.getElementsByClassName("firstbar")[0].classList = document.getElementsByClassName("firstbar")[0].className.replace(/(^|\s)bg-\S+/g, '');
+   document.getElementsByClassName("firstbar")[0].classList += " bg-" + localStorage.getItem("bg");
+
 }
 
 let toggler = document.getElementsByClassName("demo-toggle-skin");
@@ -26,6 +33,9 @@ for (var i = toggler.length - 1; i >= 0; i--) {
 
 	 	document.getElementsByClassName("firstbar")[0].classList = document.getElementsByClassName("firstbar")[0].className.replace(/(^|\s)bg-\S+/g, '');
          document.getElementsByClassName("firstbar")[0].classList += ' bg-' + _this.attributes.title.nodeValue.toLowerCase();
-        // firstbar
+         localStorage.removeItem("bg");
+         localStorage.setItem("bg", _this.attributes.title.nodeValue.toLowerCase());
+
+         // firstbar
 	});
  }
