@@ -64,7 +64,7 @@
                         <div class="main">
                             <div class="featured">
                                 <figure>
-                                    <img src="{{ asset('storage/home/' . $ad->media_url) }}">
+                                    <img src="{{ asset('storage/ads/' . $ad->media_url) }}">
                                     <figcaption>Image by pexels.com</figcaption>
                                 </figure>
                             </div>

@@ -61,7 +61,7 @@
                 <div class="row">
                     <div class="col-md-3 col-sm-12">
                         <div class="brand">
-                            <a href="index.html">
+                            <a href="{{ route('home.index') }}">
                                 <img src="{{ asset('home/images/logo.png') }}" alt="Magz Logo">
                             </a>
                         </div>

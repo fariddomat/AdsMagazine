@@ -100,36 +100,30 @@
                         <div class="featured-author">
                             <div class="featured-author-inner">
                                 <div class="featured-author-cover"
-                                    style="background-image: url({{ asset('home/images/news/img15.jpg') }});">
+                                    style="background-image: url({{ asset('storage/users/'.$userWithMostAdViews->img) }});">
                                     <div class="badges">
                                         <div class="badge-item"><i class="ion-star"></i> Top Advisior</div>
                                     </div>
                                     <div class="featured-author-center">
                                         <figure class="featured-author-picture">
-                                            <img src="{{ asset('home/images/img01.jpg') }}" alt="Sample Article">
+                                            <img src="{{ asset('storage/users/'.$userWithMostAdViews->img) }}" alt="Sample Article">
                                         </figure>
                                         <div class="featured-author-info">
-                                            <h2 class="name">John Doe</h2>
-                                            <div class="desc">@JohnDoe</div>
+                                            <h2 class="name">{{ $userWithMostAdViews->name }}</h2>
+                                            <div class="desc">{{ $userWithMostAdViews->email }}</div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="featured-author-body">
                                     <div class="featured-author-count">
                                         <div class="item">
-                                            <a href="#">
-                                                <div class="name">Posts</div>
-                                                <div class="value">208</div>
+                                            <a>
+                                                <div class="name">Ads : </div>
+                                                <div class="value">{{ $userWithMostAdViews->ads->count() }}</div>
                                             </a>
                                         </div>
                                         <div class="item">
-                                            <a href="#">
-                                                <div class="name">Stars</div>
-                                                <div class="value">3,729</div>
-                                            </a>
-                                        </div>
-                                        <div class="item">
-                                            <a href="#">
+                                            <a href="{{ route('search', ['user_id' => $userWithMostAdViews->id]) }}">
                                                 <div class="icon">
                                                     <div>More</div>
                                                     <i class="ion-chevron-right"></i>
@@ -138,9 +132,8 @@
                                         </div>
                                     </div>
                                     <div class="featured-author-quote">
-                                        "Eur costrict mobsa undivani krusvuw blos andugus pu aklosah"
+                                        {{ $userWithMostAdViews->description }}
                                     </div>
-
                                     <div class="featured-author-footer">
                                         <a href="#">See All Advisior</a>
                                     </div>

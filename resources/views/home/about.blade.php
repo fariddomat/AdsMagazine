@@ -7,44 +7,42 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
       <ol class="breadcrumb">
-          <li><a href="index.html">Home</a></li>
+          <li><a href="{{ route('home.index') }}">Home</a></li>
         <li class="active">About Us</li>
       </ol>
                 <h1 class="page-title">About Us</h1>
                 <p class="page-subtitle">We will tell you who we are</p>
                 <div class="line thin"></div>
                 <div class="page-description">
-                    <h4>Ullamco Laboris</h4>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                    <h4>Pellentesque</h4>
-                    <p>
-                        Nulla facilisi. Donec mollis laoreet diam. Nullam suscipit pretium turpis at pellentesque. Donec suscipit libero nec pellentesque fringilla. Etiam dictum ut nulla eu vehicula. Nullam sed ultricies nisi. Etiam dapibus diam vitae gravida sagittis.
-                    </p>
-                    <h4>Fermentum</h4>
-                    <p>
-                        Nulla ante nulla, aliquet vel gravida non, finibus vel eros. Vestibulum lectus augue, placerat ac tincidunt rhoncus, vehicula ac tellus. Nullam a cursus ipsum. Pellentesque ornare mi sit amet nibh euismod gravida. Quisque in tempus odio. Fusce porttitor dolor ut tortor tristique, ut rhoncus nunc cursus. Morbi placerat lorem vel dictum maximus. Vivamus at sollicitudin turpis. Sed eu porta sem, et elementum tellus.
-                    </p>
-                    <p>
-                        Sed nec feugiat sem, nec ultrices orci. Duis ultrices ultricies fringilla. Aliquam convallis diam eu lectus porta, sit amet viverra nibh tincidunt. Etiam et luctus nisi. Integer posuere, augue at elementum aliquet, mauris ante dictum dui, eu pellentesque arcu ante eget libero. Sed consectetur fermentum felis sit amet eleifend.
-                    </p>
-                    <div class="question">
-                        Have a question? <a href="#" class="btn btn-primary">Contact Us</a>
-                    </div>
+
+                    <section>
+                        <h2>Our Mission</h2>
+                        <p>At Ads Magazine, our mission is to connect businesses and individuals with their target audience through effective and engaging advertising. We believe in the power of advertising to create opportunities and foster growth for both advertisers and consumers.</p>
+                    </section>
+
+                    <section>
+                        <h2>What We Offer</h2>
+                        <p>Ads Magazine provides a platform for companies and individuals to showcase their products, services, and messages to a wide audience. Whether you're a small local business or a large corporation, our platform is designed to help you reach potential customers effectively.</p>
+                    </section>
+
+                    <section>
+                        <h2>Why Choose Ads Magazine?</h2>
+                        <p>1. <strong>Visibility:</strong> Your ads will be prominently featured on our platform, ensuring maximum visibility.</p>
+                        <p>2. <strong>Targeted Reach:</strong> Reach your specific target audience based on demographics, interests, and more.</p>
+                        <p>3. <strong>Easy to Use:</strong> Our user-friendly platform allows advertisers to create and manage ads effortlessly.</p>
+                        <p>4. <strong>Affordable Options:</strong> We offer a range of advertising slots to fit various budgets and needs.</p>
+                    </section>
+
+                    <section>
+                        <h2>Meet the Team</h2>
+                        <p>Ads Magazine is made possible by a dedicated team of professionals passionate about connecting businesses and individuals with their audience. Our team works tirelessly to ensure the success of your advertising campaigns.</p>
+                    </section>
+
+                    <section>
+                        <h2>Contact Us</h2>
+                        <p>Have questions or want to get started with advertising on Ads Magazine? We're here to help! Contact our support team at <a href="mailto:support@adsmagazine.com">support@adsmagazine.com</a>.</p>
+                    </section>
+
                 </div>
             </div>
         </div>

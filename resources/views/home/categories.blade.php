@@ -18,13 +18,13 @@
                         <div class="position-relative overflow-hidden" style="height: 300px;">
                             <img class="img-fluid w-100 h-100" src="{{ asset('storage/categories/' . $category->img) }}"
                                 style="object-fit: cover;">
-                            <div class="overlay">
+                            <div class="overlay" style="  padding: 15px 0px;">
                                 <div class="mb-1" style="font-size: 13px;">
-                                    <a class="text-white" href="{{ route('search', ['category_id'=>$category->id]) }}">{{ $category->name }}</a>
+                                    <a class="h4 text-white" href="{{ route('search', ['category_id'=>$category->id]) }}">{{ $category->name }}</a>
                                     <span class="px-1 text-white">/</span>
                                     <a class="text-white" href="{{ route('search', ['category_id'=>$category->id]) }}">{{ $category->created_at->diffForHumans() }}</a>
                                 </div>
-                                <a class="h4 m-0 text-white" href="{{ route('search', ['category_id'=>$category->id]) }}">Ads Count : {{ $category->ads->count() }}</a>
+                                <a class=" m-0 text-white" href="{{ route('search', ['category_id'=>$category->id]) }}">Ads Count : {{ $category->ads->count() }}</a>
                             </div>
                         </div>
                     @endforeach
@@ -44,7 +44,7 @@
                                         <div class="position-relative">
                                             <img class="img-fluid w-100" src="{{ asset('storage/ads/' . $ad->media_url) }}"
                                                 style="object-fit: cover;">
-                                            <div class="overlay position-relative bg-light">
+                                            <div class="overlay position-relative bg-light" style="  padding: 15px 0px;">
                                                 <div class="mb-2" style="font-size: 13px;">
                                                     <a href="">{{ $ad->title }}</a>
                                                     <span class="px-1">/</span>
@@ -67,7 +67,7 @@
                                         <div class="position-relative">
                                             <img class="img-fluid w-100" src="{{ asset('storage/ads/' . $ad->media_url) }}"
                                                 style="object-fit: cover;">
-                                            <div class="overlay position-relative bg-light">
+                                            <div class="overlay position-relative bg-light" style="  padding: 15px 0px;">
                                                 <div class="mb-2" style="font-size: 13px;">
                                                     <a href="">{{ $ad->title }}</a>
                                                     <span class="px-1">/</span>
