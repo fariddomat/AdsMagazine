@@ -18,9 +18,14 @@
 
                                     @include('dashboard._layouts._error')
                                     <h5 class="mt-2">Name</h5>
-                                    <input value="{{old('name')}}" name="name" type="text" class="form-control" id="basicInput" required>
-                                    <button
-                                        class="btn btn-icon btn-info mr-1 mt-2"> Create <i class="fa fa-save"
+                                    <input value="{{ old('name') }}" name="name" type="text" class="form-control"
+                                        id="basicInput" required>
+
+                                    <h5 class="mt-2">Image</h5>
+                                    <input type="file" class="form-control" name="img" id="img"
+                                        value="{{ old('img') }}" aria-describedby="helpId" placeholder="">
+
+                                    <button class="btn btn-icon btn-info mr-1 mt-2"> Create <i class="fa fa-save"
                                             style="position: relative"></i></button>
                                 </form>
                             </fieldset>

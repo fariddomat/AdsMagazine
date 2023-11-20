@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 class CategoryController extends Controller
 {
     public function __construct()
     {
-        
+
     }
 
     /**
@@ -48,7 +50,17 @@ class CategoryController extends Controller
             'name'=>'required|unique:categories,name'
         ]);
 
-        Category::create($request->all());
+        $request_data = $request->except(['img']);
+
+        if ($request->img) {
+            $img = Image::make($request->img)->resize(500, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })
+                ->encode('webp', 90);
+            Storage::disk('public')->put('categories/'. $request->img->hashName(), (string)$img, 'public');
+            $request_data['img'] = $request->img->hashName();
+        }
+        Category::create($request_data);
         session()->flash('success','Successfully Created !');
         return redirect()->route('dashboard.categories.index');
     }
@@ -90,8 +102,18 @@ class CategoryController extends Controller
             'name'=>'required|unique:categories,name,' . $id
         ]);
         $category=Category::find($id);
+        $request_data = $request->except(['img']);
+        if ($request->img) {
+            Storage::disk('public')->delete('categories/' . $category->img);
+            $img = Image::make($request->img)->resize(500, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })
+                ->encode('webp', 90);
+            Storage::disk('public')->put('categories/'. $request->img->hashName(), (string)$img, 'public');
+            $request_data['img'] = $request->img->hashName();
+        }
 
-        $category->update($request->all());
+        $category->update($request_data);
 
         session()->flash('success','Successfully updated !');
         return redirect()->route('dashboard.categories.index');
