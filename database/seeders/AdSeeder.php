@@ -57,7 +57,7 @@ class AdSeeder extends Seeder
             [
                 'title' => ' Sport Tool',
                 'description' => 'Trendy Sport tools for amazing training',
-                'media_url' => 'cooking.jpg',
+                'media_url' => 'ss.jpg',
                 'price' => 90.00,
                 'user_id' => 3,
                 'category_id' => 5,
@@ -67,10 +67,10 @@ class AdSeeder extends Seeder
 
 
             [
-                'title' => 'Mobile for Sale',
-                'description' => 'Powerful mobile with the latest features',
-                'media_url' => 'mobile.jpg',
-                'price' => 1000.00,
+                'title' => 'Gaming Laptop',
+                'description' => 'Powerful laptop with the latest features',
+                'media_url' => 'l.jpg',
+                'price' => 3000.00,
                 'user_id' => 3,
                 'category_id' => 1,
                 'ad_slot_id' => 1,
@@ -79,7 +79,7 @@ class AdSeeder extends Seeder
             [
                 'title' => 'New tshirts',
                 'description' => 'Trendy clothes for all occasions',
-                'media_url' => 'tshirts.jpg',
+                'media_url' => 'clothing.jpg',
                 'price' => 50.00,
                 'user_id' => 3,
                 'category_id' => 2,
@@ -87,10 +87,10 @@ class AdSeeder extends Seeder
                 'status' => 'approved',
             ],
             [
-                'title' => 'Rest chair',
-                'description' => 'Trendy Furniture for NEw Houses',
-                'media_url' => 'furniture.jpg',
-                'price' => 50.00,
+                'title' => 'Roof',
+                'description' => 'Trendy Roof for NEw Houses',
+                'media_url' => 'roof.jpg',
+                'price' => 5000.00,
                 'user_id' => 3,
                 'category_id' => 3,
                 'ad_slot_id' => 3,
@@ -107,9 +107,9 @@ class AdSeeder extends Seeder
                 'status' => 'approved',
             ],
             [
-                'title' => 'Sport Ball',
-                'description' => 'Trendy Ball for amazing training',
-                'media_url' => 'ball.jpg',
+                'title' => 'Sport Bike',
+                'description' => 'Trendy bike for amazing training',
+                'media_url' => 'bike.jpg',
                 'price' => 90.00,
                 'user_id' => 3,
                 'category_id' => 5,

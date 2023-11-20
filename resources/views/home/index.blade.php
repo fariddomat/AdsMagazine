@@ -50,10 +50,10 @@
                     <div>Top View ADS</div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="col-md-12 col-sm-6 col-xs-12">
                         <div class="row">
                             @foreach ($adsWithMostViews as $ad)
-                            <article class="article col-md-12">
+                            <article class="article col-md-6">
                                 <div class="inner">
                                     <figure>
                                         <a href="{{ route('show', $ad->id) }}">
@@ -186,7 +186,7 @@
             </div>
         </h1>
         <div class="owl-carousel owl-theme carousel-1">
-           @foreach ($adsWithMostClicks as $item)
+           @foreach ($adsWithMostClicks as $ad)
            <article class="article">
             <div class="inner">
                 <figure>

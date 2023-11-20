@@ -20,7 +20,7 @@
                                         <div class="padding">
                                             <h1><a href="{{ route('show', $ad->id) }}">{{ $ad->title }}</a></h1>
                                             <div class="detail">
-                                                <div class="category"><a>{{ $ad->category }}</a></div>
+                                                <div class="category"><a>{{ $ad->category->name }}</a></div>
                                                 <div class="time">{{ $ad->created_at->diffForHumans() }}</div>
                                             </div>
                                         </div>
@@ -64,7 +64,7 @@
                         <div class="main">
                             <div class="featured">
                                 <figure>
-                                    <img src="{{ asset('storage/home/' . $media->url) }}">
+                                    <img src="{{ asset('storage/home/' . $ad->media_url) }}">
                                     <figcaption>Image by pexels.com</figcaption>
                                 </figure>
                             </div>
@@ -89,12 +89,12 @@
                     </div>
                     <div class="author">
                         <figure>
-                            <img src="{{ asset('storage/users/' . $user->img) }}">
+                            <img src="{{ asset('storage/users/' . $ad->user->img) }}">
                         </figure>
                         <div class="details">
                             <h3 class="name">{{ $ad->user->name }}</h3>
-                            <div class="job">{{ ad->user->email }}</div>
-                            <div class="job">{{ ad->user->mobile }}</div>
+                            <div class="job">{{ $ad->user->email }}</div>
+                            <div class="job">{{ $ad->user->mobile }}</div>
                             <p>{{ $ad->user->description }}</p>
 
                         </div>
