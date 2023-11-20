@@ -40,11 +40,17 @@
 
                                     <fieldset class="form-group">
                                         <h5 class="mt-2">User</h5>
+                                        @if (Auth::user()->hasRole('advertiser'))
+                                        <select name="user_id" class="form-control" id="" disabled>
+                                                <option value="{{ Auth::user()->id }}">{{ Auth::user()->name }}</option>
+                                        </select>
+                                        @else
                                         <select name="user_id" class="form-control" id="">
                                             @foreach ($users as $user)
                                                 <option value="{{ $user->id }}">{{ $user->name }}</option>
                                             @endforeach
                                         </select>
+                                        @endif
                                         <h5 class="mt-2">Category</h5>
                                         <select name="category_id" class="form-control" id="">
                                             @foreach ($categories as $category)

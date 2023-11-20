@@ -19,8 +19,13 @@ class AdController extends Controller
      */
     public function index()
     {
+        $ads='';
+        if (auth()->user()->hasRole('advertiser')) {
+            $ads = Ad::where('user_id', auth()->id())->paginate(10);
+        } else {
 
-        $ads = Ad::paginate(10);
+            $ads = Ad::paginate(10);
+        }
         return view('dashboard.ads.index', compact('ads'));
     }
 
@@ -29,9 +34,9 @@ class AdController extends Controller
      */
     public function create()
     {
-        $users=User::all();
-        $categories=Category::all();
-        $adSlots=AdSlot::all();
+        $users = User::all();
+        $categories = Category::all();
+        $adSlots = AdSlot::all();
         return view('dashboard.ads.create', compact('users', 'categories', 'adSlots'));
     }
 
@@ -61,7 +66,7 @@ class AdController extends Controller
                 $constraint->aspectRatio();
             })
                 ->encode('webp', 90);
-            Storage::disk('public')->put('ads/'. $request->media->hashName(), (string)$media, 'public');
+            Storage::disk('public')->put('ads/' . $request->media->hashName(), (string)$media, 'public');
             $request_data['media_url'] = $request->media->hashName();
         }
         // Create a new ad
@@ -69,7 +74,6 @@ class AdController extends Controller
 
         // Redirect to the ads index page or any other desired route
         return redirect()->route('dashboard.ads.index')->with('success', 'Ad created successfully');
-
     }
 
     /**
@@ -77,12 +81,11 @@ class AdController extends Controller
      */
     public function show(string $id)
     {
-        $users=User::all();
-        $categories=Category::all();
-        $adSlots=AdSlot::all();
-        $ad=Ad::findOrFail($id);
+        $users = User::all();
+        $categories = Category::all();
+        $adSlots = AdSlot::all();
+        $ad = Ad::findOrFail($id);
         return view('dashboard.ads.show', compact('ad', 'users', 'categories', 'adSlots'));
-
     }
 
     /**
@@ -91,10 +94,10 @@ class AdController extends Controller
     public function edit(string $id)
     {
 
-        $users=User::all();
-        $categories=Category::all();
-        $adSlots=AdSlot::all();
-        $ad=Ad::findOrFail($id);
+        $users = User::all();
+        $categories = Category::all();
+        $adSlots = AdSlot::all();
+        $ad = Ad::findOrFail($id);
         return view('dashboard.ads.edit', compact('ad', 'users', 'categories', 'adSlots'));
     }
 
@@ -103,7 +106,7 @@ class AdController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $ad=Ad::findOrFail($id);
+        $ad = Ad::findOrFail($id);
 
         // Validate the request
         $validatedData = $request->validate([
@@ -124,7 +127,7 @@ class AdController extends Controller
                 $constraint->aspectRatio();
             })
                 ->encode('webp', 90);
-            Storage::disk('public')->put('ads/'. $request->media->hashName(), (string)$media, 'public');
+            Storage::disk('public')->put('ads/' . $request->media->hashName(), (string)$media, 'public');
             $request_data['media_url'] = $request->media->hashName();
         }
         // Update ad
@@ -132,7 +135,6 @@ class AdController extends Controller
 
         // Redirect to the ads index page or any other desired route
         return redirect()->route('dashboard.ads.index')->with('success', 'Ad Updated successfully');
-
     }
 
     /**
@@ -140,27 +142,24 @@ class AdController extends Controller
      */
     public function destroy(string $id)
     {
-        $ad=Ad::findOrFail($id);
+        $ad = Ad::findOrFail($id);
         $ad->delete();
         return redirect()->route('dashboard.ads.index')->with('success', 'Ad Deleted successfully');
-
     }
     public function accept(string $id)
     {
-        $ad=Ad::findOrFail($id);
+        $ad = Ad::findOrFail($id);
         $ad->update([
-            'status'=>'accept'
+            'status' => 'accept'
         ]);
         return redirect()->route('dashboard.ads.index')->with('success', 'Ad Accepted successfully');
-
     }
     public function reject(string $id)
     {
-        $ad=Ad::findOrFail($id);
+        $ad = Ad::findOrFail($id);
         $ad->update([
-            'status'=>'reject'
+            'status' => 'reject'
         ]);
         return redirect()->route('dashboard.ads.index')->with('success', 'Ad Rejected successfully');
-
     }
 }

@@ -10,12 +10,18 @@
     </div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+
             <li class=" {{ Request::is('dashboard/dashboard') ? 'active' : '' }} ">
 
                 <a href="{{ route('dashboard.home') }}"><i class="ft-home"></i><span class="menu-title"
                         data-i18n="">Dashboard</span>
                 </a>
             </li>
+            <li class=" nav-item  {{ Request::is('dashboard/ads*') ? 'active' : '' }} "><a
+                    href="{{ route('dashboard.ads.index') }}"><i class="fa fa-film"></i><span class="menu-title"
+                        data-i18n="">Ads</span></a>
+            </li>
+            @if (Auth::user()->hasRole('superadministrator|administrator'))
             <li class=" nav-item  {{ Request::is('dashboard/categories*') ? 'active' : '' }} "><a
                     href="{{ route('dashboard.categories.index') }}"><i class="fa fa-building-o"></i><span
                         class="menu-title" data-i18n="">Categories</span></a>
@@ -25,16 +31,12 @@
                     href="{{ route('dashboard.adSlots.index') }}"><i class="fa fa-building-o"></i><span
                         class="menu-title" data-i18n="">Slots</span></a>
             </li>
-            <li class=" nav-item  {{ Request::is('dashboard/ads*') ? 'active' : '' }} "><a
-                    href="{{ route('dashboard.ads.index') }}"><i class="fa fa-film"></i><span class="menu-title"
-                        data-i18n="">Ads</span></a>
-            </li>
 
             <li class=" nav-item {{ Request::is('dashboard/users*') ? 'active' : '' }} "><a
                     href="{{ route('dashboard.users.index') }}"><i class="ft-users"></i><span class="menu-title"
                         data-i18n="">Users</span></a>
             </li>
-
+            @endif
             @if (Auth::user()->hasRole('superadministrator'))
                 <li class=" nav-item  {{ Request::is('dashboard/about*') ? 'active' : '' }} "><a
                         href="{{ route('dashboard.about') }}"><i class="fa fa-info"></i><span class="menu-title"
