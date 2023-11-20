@@ -39,6 +39,7 @@ class HomeController extends Controller
     }
     public function show($id)
     {
+        $ads=Ad::latest()->limit(4)->get();
         $ad=Ad::findOrFail($id);
         AdView::create([
             'ad_id' => $ad->id,
@@ -48,7 +49,7 @@ class HomeController extends Controller
             'ad_id' => $ad->id,
             'user_id' => auth()->id(),
         ]);
-        return view('home.show', compact('ad'));
+        return view('home.show', compact('ads', 'ad'));
     }
     public function search(Request $request)
     {
