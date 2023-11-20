@@ -101,4 +101,10 @@ class User extends Authenticatable implements LaratrustUser
     {
         return $this->hasMany(AdView::class);
     }
+
+
+    public function adViews()
+    {
+        return $this->hasManyThrough(AdView::class, Ad::class);
+    }
 }

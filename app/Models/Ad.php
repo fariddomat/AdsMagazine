@@ -31,8 +31,20 @@ class Ad extends Model
         return $this->hasMany(AdClick::class);
     }
 
+
+    public function scopeOrderByClicks($query, $direction = 'desc')
+    {
+        return $query->withCount('ad_clicks')->orderBy('ad_clicks_count', $direction);
+    }
+
     public function ad_views()
     {
         return $this->hasMany(AdView::class);
+    }
+
+
+    public function scopeOrderByViews($query, $direction = 'desc')
+    {
+        return $query->withCount('ad_views')->orderBy('ad_views_count', $direction);
     }
 }
