@@ -9,19 +9,19 @@
                     <aside>
                         <h1 class="aside-title">Recent Ads</h1>
                         <div class="aside-body">
-                            @foreach ($ads as $ad)
+                            @foreach ($ads as $ad1)
                                 <article class="article-mini">
                                     <div class="inner">
                                         <figure>
                                             <a href="single.html">
-                                                <img src="{{ asset('storage/ads/' . $ad->media_url) }}">
+                                                <img src="{{ asset('storage/ads/' . $ad1->media_url) }}">
                                             </a>
                                         </figure>
                                         <div class="padding">
-                                            <h1><a href="{{ route('show', $ad->id) }}">{{ $ad->title }}</a></h1>
+                                            <h1><a href="{{ route('show', $ad1->id) }}">{{ $ad1->title }}</a></h1>
                                             <div class="detail">
-                                                <div class="category"><a>{{ $ad->category->name }}</a></div>
-                                                <div class="time">{{ $ad->created_at->diffForHumans() }}</div>
+                                                <div class="category"><a>{{ $ad1->category->name }}</a></div>
+                                                <div class="time">{{ $ad1->created_at->diffForHumans() }}</div>
                                             </div>
                                         </div>
                                     </div>

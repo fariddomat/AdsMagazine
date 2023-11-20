@@ -34,14 +34,20 @@
             /* background-color: #fffd70; */
         }
 
-        .bg-blue{
+        .bg-blue {
             background-color: #626EEF;
-        }.bg-purple{
+        }
+
+        .bg-purple {
             background-color: #8e44ad;
-        }.bg-default{
+        }
+
+        .bg-default {
             background-color: #F73F52;
 
-        }.bg-orange{
+        }
+
+        .bg-orange {
             background-color: #FC624D;
         }
     </style>
@@ -61,11 +67,11 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12">
-                        <form class="search" autocomplete="off">
+                        <form action="{{ route('search') }}" method="GET" class="search" autocomplete="off">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="text" name="q" class="form-control"
-                                        placeholder="Type something here">
+                                    <input type="text" name="search" class="form-control"
+                                        placeholder="Type something here" value="{{ old('search') }}">
                                     <div class="input-group-btn">
                                         <button class="btn btn-primary"><i class="ion-search"></i></button>
                                     </div>
@@ -80,12 +86,26 @@
                     </div>
                     <div class="col-md-3 col-sm-12 text-right">
                         <ul class="nav-icons">
-                            <li><a href="register.html"><i class="ion-person-add"></i>
-                                    <div>Register</div>
-                                </a></li>
-                            <li><a href="login.html"><i class="ion-person"></i>
-                                    <div>Login</div>
-                                </a></li>
+                            @auth
+                                <li><a href="{{ route('dashboard.home') }}"><i class="ion-person-add"></i>
+                                        <div>Dashboard</div>
+                                    </a></li>
+                                <li> <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+
+                                        <i class="ft-power"></i>
+                                        <div>logout</div>
+                                    </a>
+                                </li>
+                            @else
+                                <li><a href="{{ route('register', ['id' => 1]) }}"><i class="ion-person-add"></i>
+                                        <div>Register</div>
+                                    </a></li>
+                                <li><a href="{{ route('login', ['id' => 1]) }}"><i class="ion-person"></i>
+                                        <div>Login</div>
+                                    </a></li>
+                            @endauth
                         </ul>
                     </div>
                 </div>
@@ -113,10 +133,10 @@
                         <li class="for-tablet"><a href="login.html">Login</a></li>
                         <li class="for-tablet"><a href="register.html">Register</a></li>
                         <li><a href="{{ route('home.index') }}">Home</a></li>
-                        <li><a href="">Categories</a></li>
-                        <li><a href="">Pricing</a></li>
-                        <li><a href="">About</a></li>
-                        <li><a href="">Contact</a></li>
+                        <li><a href="{{ route('categories') }}">Categories</a></li>
+                        <li><a href="{{ route('pricing') }}">Pricing</a></li>
+                        <li><a href="{{ route('about') }}">About</a></li>
+                        <li><a href="{{ route('contact') }}">Contact</a></li>
 
                     </ul>
                 </div>
@@ -142,7 +162,7 @@
                             <p class="brand-description">
                                 ADS magazine
                             </p>
-                            <a href="page.html" class="btn btn-magz white">About Us <i
+                            <a href="{{ route('about') }}" class="btn btn-magz white">About Us <i
                                     class="ion-ios-arrow-thin-right"></i></a>
                         </div>
                     </div>

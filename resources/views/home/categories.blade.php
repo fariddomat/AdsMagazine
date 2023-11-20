@@ -20,11 +20,11 @@
                                 style="object-fit: cover;">
                             <div class="overlay">
                                 <div class="mb-1" style="font-size: 13px;">
-                                    <a class="text-white" href="">{{ $category->name }}</a>
+                                    <a class="text-white" href="{{ route('search', ['category_id'=>$category->id]) }}">{{ $category->name }}</a>
                                     <span class="px-1 text-white">/</span>
-                                    <a class="text-white" href="">{{ $category->created_at->diffForHumans() }}</a>
+                                    <a class="text-white" href="{{ route('search', ['category_id'=>$category->id]) }}">{{ $category->created_at->diffForHumans() }}</a>
                                 </div>
-                                <a class="h4 m-0 text-white">Ads Count : {{ $category->ads->count() }}</a>
+                                <a class="h4 m-0 text-white" href="{{ route('search', ['category_id'=>$category->id]) }}">Ads Count : {{ $category->ads->count() }}</a>
                             </div>
                         </div>
                     @endforeach
