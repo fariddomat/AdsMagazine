@@ -35,20 +35,24 @@
         }
 
         .bg-blue {
-            background-color: #626EEF;
+            /* background-color: #626EEF; */
+            background: linear-gradient(to bottom,#626EEF, #bbdfff);
+
         }
 
         .bg-purple {
-            background-color: #8e44ad;
+            /* background-color: #8e44ad; */
+            background: linear-gradient(to bottom,#8e44ad, #bbbcff);
         }
 
         .bg-default {
-            background-color: #F73F52;
-
+            /* background-color: #F73F52; */
+            background: linear-gradient(to bottom,#F73F52, #fbb);
         }
 
         .bg-orange {
-            background-color: #FC624D;
+            /* background-color: #FC624D; */
+            background: linear-gradient(to bottom,#FC6240, #fff8bb);
         }
     </style>
     @yield('styles')

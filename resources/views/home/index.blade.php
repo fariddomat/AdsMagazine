@@ -134,9 +134,6 @@
                                     <div class="featured-author-quote">
                                         {{ $userWithMostAdViews->description }}
                                     </div>
-                                    <div class="featured-author-footer">
-                                        <a href="#">See All Advisior</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>

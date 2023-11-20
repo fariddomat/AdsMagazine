@@ -63,6 +63,17 @@ class HomeController extends Controller
             $ads->appends(['search' => $request->input('search')]);
             return view('home.search', compact('ads','ads_count'));
         }
+
+        if ($request->user_id !='') {
+            $query=$request->user_id;
+            $ads=Ad::whereHas('user', function ($userQuery) use ($query) {
+                $userQuery->where('id',"$query");
+            })->paginate(5);
+            // dd($ads);
+            $ads->appends(['user_id' => $request->input('user_id')]);
+            $ads->appends(['search' => $request->input('search')]);
+            return view('home.search', compact('ads','ads_count'));
+        }
         $query = $request->input('search');
 
         $ads = Ad::where('title', 'like', "%$query%")
@@ -81,7 +92,19 @@ class HomeController extends Controller
     }
     public function contact()
     {
-        return view('home.contact');
+        $ads=Ad::all();
+        return view('home.contact', compact('ads'));
+    }
+    public function postContact(Request $request)
+    {
+        $request->validate([
+            'ad_id'=>'required',
+            'name'=>'required',
+            'email'=>'required',
+            'subject'=>'required',
+            'message'=>'required',
+        ]);
+        return redirect()->route('home.index');
     }
     public function pricing()
     {

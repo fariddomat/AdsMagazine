@@ -38,6 +38,9 @@ Route::get('/show/{id}', [HomeController::class, 'show'])->name('show');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+Route::post('/postContact', [HomeController::class, 'postContact'])->name('postContact');
+
+
 Route::get('/pricing', [HomeController::class, 'pricing'])->name('pricing');
 
 // Route::get('/dashboard', function () {

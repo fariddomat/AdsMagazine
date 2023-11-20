@@ -18,8 +18,7 @@
                         <div class="col-md-6 col-sm-6">
                             <h3>Contact</h3>
                             <p>
-                                Aliquam in maximus massa. In magna dolor, efficitur vitae faucibus sagittis, elementum quis lacus. Aliquam pretium sem lectus, vitae gravida ex efficitur vitae.
-                            </p>
+                                Contact with advistor to ask about ads or contact the adminstration</p>
                             <p>
                                 Phone: <span class="bold">+123 45 678 9</span> <br>
                                 Email: <span class="bold">hi@yourcompany.com</span>
@@ -30,7 +29,19 @@
                             </p>
                         </div>
                         <div class="col-md-6 col-sm-6">
-                            <form class="row contact" id="contact-form">
+                            <form class="row contact" action="{{ route('postContact') }}" method="post" id="contact-form">
+                                @csrf
+                                <div class="col-md-12">
+                                    @include('dashboard._layouts._error')
+                                    <div class="form-group">
+                                        <label>Ads <span class="required"></span></label>
+                                        <select name="ad_id" class="form-control">
+                                            @foreach ($ads as $ad)
+                                            <option value="{{ $ad->id }}">{{ $ad->title }} - {{ $ad->user->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Name <span class="required"></span></label>
