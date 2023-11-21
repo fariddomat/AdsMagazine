@@ -36,7 +36,7 @@ $(function(){
 			$("section").eq(0).addClass("first");
 			$("section.first").css({
 				paddingTop: $("header.primary").outerHeight() + 15
-			})			
+			})
 		}
 		$(window).on("resize",function(){
 			if($("header.primary").length) {
@@ -47,7 +47,7 @@ $(function(){
 		});
 	}
 
-	var stickyHeader = function() {	
+	var stickyHeader = function() {
 		var didScroll;
 		$(window).on("scroll", function(event){
 			didScroll = true;
@@ -81,7 +81,7 @@ $(function(){
 	}
 
 	// love
-	var love = function() {	
+	var love = function() {
 		$(".love").each(function(){
 			$(this).find("div").html($.number($(this).find("div").html()));
 			$(this).click(function(){
@@ -115,91 +115,91 @@ $(function(){
 	}
 
 
-	// newsletter
-	var newsletter = function() {
-		$(".newsletter").submit(function(){
-			var $this = $(this),
-			newsletter = {
-				start: function() {
-					$this.find(".icon").addClass("spin");
-					$this.find(".icon i").removeClass("ion-ios-email-outline");
-					$this.find(".icon i").addClass("ion-load-b");
-					$this.find(".icon h1").html("Please wait ...");
-					$this.find(".btn").attr("disabled", true);
-					$this.find(".email").attr("disabled", true);
-				},
-				end: function() {
-					$this.find(".icon").removeClass("spin");
-					$this.find(".icon").addClass("success");
-					$this.find(".icon i").addClass("ion-checkmark");
-					$this.find(".icon i").removeClass("ion-load-b");
-					$this.find(".icon h1").html("Thank you!");
-					$this.find(".email").val("");				
-					$this.find(".btn").attr("disabled", false);
-					$this.find(".email").attr("disabled", false);
-					$.toast({
-						text: "Thanks for subscribing!",
-						position: 'bottom-right',
-						bgcolor: '#E01A31',
-						icon: 'success',
-						heading: 'Newsletter',
-						loader: false
-					});
-				},
-				error: function() {
-					$this.find(".icon").removeClass("spin");
-					$this.find(".icon").addClass("error");
-					$this.find(".icon i").addClass("ion-ios-close-outline");
-					$this.find(".icon i").removeClass("ion-load-b");
-					$this.find(".icon h1").html("Failed, try again!");
-					$this.find(".btn").attr("disabled", false);
-					$this.find(".email").attr("disabled", false);
-					$.toast({
-						text: "Failed, network error. Please try again!",
-						position: 'bottom-right',
-						icon: 'error',
-						heading: 'Newsletter',
-						loader: false
-					});
-				}
-			}
+	// // newsletter
+	// var newsletter = function() {
+	// 	$(".newsletter").submit(function(){
+	// 		var $this = $(this),
+	// 		newsletter = {
+	// 			start: function() {
+	// 				$this.find(".icon").addClass("spin");
+	// 				$this.find(".icon i").removeClass("ion-ios-email-outline");
+	// 				$this.find(".icon i").addClass("ion-load-b");
+	// 				$this.find(".icon h1").html("Please wait ...");
+	// 				$this.find(".btn").attr("disabled", true);
+	// 				$this.find(".email").attr("disabled", true);
+	// 			},
+	// 			end: function() {
+	// 				$this.find(".icon").removeClass("spin");
+	// 				$this.find(".icon").addClass("success");
+	// 				$this.find(".icon i").addClass("ion-checkmark");
+	// 				$this.find(".icon i").removeClass("ion-load-b");
+	// 				$this.find(".icon h1").html("Thank you!");
+	// 				$this.find(".email").val("");
+	// 				$this.find(".btn").attr("disabled", false);
+	// 				$this.find(".email").attr("disabled", false);
+	// 				$.toast({
+	// 					text: "Thanks for subscribing!",
+	// 					position: 'bottom-right',
+	// 					bgcolor: '#E01A31',
+	// 					icon: 'success',
+	// 					heading: 'Newsletter',
+	// 					loader: false
+	// 				});
+	// 			},
+	// 			error: function() {
+	// 				$this.find(".icon").removeClass("spin");
+	// 				$this.find(".icon").addClass("error");
+	// 				$this.find(".icon i").addClass("ion-ios-close-outline");
+	// 				$this.find(".icon i").removeClass("ion-load-b");
+	// 				$this.find(".icon h1").html("Failed, try again!");
+	// 				$this.find(".btn").attr("disabled", false);
+	// 				$this.find(".email").attr("disabled", false);
+	// 				$.toast({
+	// 					text: "Failed, network error. Please try again!",
+	// 					position: 'bottom-right',
+	// 					icon: 'error',
+	// 					heading: 'Newsletter',
+	// 					loader: false
+	// 				});
+	// 			}
+	// 		}
 
-			if($this.find(".email").val().trim().length < 1) {
-				$this.find(".email").focus();
-			}else{
-				/* 
-				 * Add your ajax code
-				 * ------------------
-				 * For example:
-				 * $.ajax({
-				 * 		url: "subscribe_url",
-				 * 		type: "post",
-				 *  	data: $this.serialize(),
-				 * 		error: function() {
-				 * 			newsletter.error();
-				 * 		},	
-				 * 		beforeSend: function() {
-				 * 			newsletter.start();
-				 * 		},	
-				 * 		success: function() {
-				 * 			newsletter.end();
-				 * 		}
-				 * });
-				 });
-				*/
+	// 		if($this.find(".email").val().trim().length < 1) {
+	// 			$this.find(".email").focus();
+	// 		}else{
+	// 			/*
+	// 			 * Add your ajax code
+	// 			 * ------------------
+	// 			 * For example:
+	// 			 * $.ajax({
+	// 			 * 		url: "subscribe_url",
+	// 			 * 		type: "post",
+	// 			 *  	data: $this.serialize(),
+	// 			 * 		error: function() {
+	// 			 * 			newsletter.error();
+	// 			 * 		},
+	// 			 * 		beforeSend: function() {
+	// 			 * 			newsletter.start();
+	// 			 * 		},
+	// 			 * 		success: function() {
+	// 			 * 			newsletter.end();
+	// 			 * 		}
+	// 			 * });
+	// 			 });
+	// 			*/
 
-				newsletter.start();
+	// 			newsletter.start();
 
-				setTimeout(function(){
-					newsletter.end();
-				}, 2000);
-			}
+	// 			setTimeout(function(){
+	// 				newsletter.end();
+	// 			}, 2000);
+	// 		}
 
-			return false;
-		});		
-	}
+	// 		return false;
+	// 	});
+	// }
 
-	var featuredImage = function() {	
+	var featuredImage = function() {
 	  $("#featured figure img").each(function(){
 	  	$(this).parent().css({
 	  		backgroundImage: 'url('+$(this).attr('src')+')',
@@ -226,7 +226,7 @@ $(function(){
 
 		$("#headline-nav [data-slide=prev]").click(function(){
 			headlineCarousel.trigger('prev.owl.carousel');
-		});		
+		});
 	}
 
   // floating label
@@ -239,7 +239,7 @@ $(function(){
 		  		$(this).parent().removeClass("focused");
 	  		}
 	  	});
-	  });  	
+	  });
   }
 
   // browser
@@ -255,7 +255,7 @@ $(function(){
 		});
 	}
 
-	var bestOfTheWeek = function() {	
+	var bestOfTheWeek = function() {
 		var botwCarousel = $(".carousel-1").owlCarousel({
 			items: 4,
 			itemElement: 'article',
@@ -363,7 +363,7 @@ $(function(){
 					video_list.trigger('next.owl.carousel');
 				});
 			}
-		});		
+		});
 	}
 
 	function convert_time(duration) {
@@ -398,7 +398,7 @@ $(function(){
 
 	var verticalSlider = function () {
 		$(".vertical-slider").each(function(ii){
-			var $this = $(this), 
+			var $this = $(this),
 					$item = $this.find($this.data("item")),
 					$item_height = 0,
 					$item_max = $this.data("max"),
@@ -467,7 +467,7 @@ $(function(){
 			setInterval(function(){
 				vs_next();
 			},10000);
-		});		
+		});
 	}
 
 	var featured = function() {
@@ -476,7 +476,7 @@ $(function(){
 			dots: false,
 			// autoplay: true,
 			loop: true
-		});		
+		});
 	}
 
 	var magnificGallery = function() {
@@ -491,7 +491,7 @@ $(function(){
 				},
 				preloader: true,
 	  		})
-		});		
+		});
 	}
 
 	// ease scroll
@@ -621,7 +621,7 @@ $(function(){
 					$(this).addClass("btn-primary");
 				}else{
 					$this.attr('type', 'text');
-					$this.val($("#passeye-"+i).val());				
+					$this.val($("#passeye-"+i).val());
 					$this.addClass("show");
 					$(this).removeClass("btn-primary");
 					$(this).addClass("btn-magz");
@@ -630,32 +630,32 @@ $(function(){
 		});
 	}
 
-	var sendContactForm = function() {
-		$("#contact-form").submit(function() {
-			var $this = $(this);
-			$.ajax({
-				url: 'server/send.php',
-				type: "post",
-				data: $this.serialize(),
-				dataType: 'json',
-				beforeSend: function() {
-					loading.show();
-				},
-				complete: function() {
-					loading.hide();
-				},
-				success: function(data) {
-					if(data.status == true) {
-						swal("Success", data.data, "success");
-						$this[0].reset();
-					}else{
-						swal("Failed", data.data, "error");
-					}
-				}
-			});
-			return false;
-		});
-	}
+	// var sendContactForm = function() {
+	// 	$("#contact-form").submit(function() {
+	// 		var $this = $(this);
+	// 		$.ajax({
+	// 			url: 'server/send.php',
+	// 			type: "post",
+	// 			data: $this.serialize(),
+	// 			dataType: 'json',
+	// 			beforeSend: function() {
+	// 				loading.show();
+	// 			},
+	// 			complete: function() {
+	// 				loading.hide();
+	// 			},
+	// 			success: function(data) {
+	// 				if(data.status == true) {
+	// 					swal("Success", data.data, "success");
+	// 					$this[0].reset();
+	// 				}else{
+	// 					swal("Failed", data.data, "error");
+	// 				}
+	// 			}
+	// 		});
+	// 		return false;
+	// 	});
+	// }
 
 	var loadFile = function() {
 		$("[data-load]").each(function() {

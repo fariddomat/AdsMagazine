@@ -49,6 +49,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Name</th>
+                                    <th scope="col">Ads</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -57,6 +58,7 @@
                                     <tr >
                                         <th scope="row">{{ $index + 1 }}</th>
                                         <td dir="rtl">{{ $category->name }}</td>
+                                        <td dir="rtl">{{ $category->ads->count() }}</td>
                                         <td class="form-group" style="  display: flex;
                                         word-wrap: inherit;border: none;">
 

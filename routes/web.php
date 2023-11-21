@@ -3,6 +3,7 @@
 use App\Http\Controllers\Dashboard\AdController;
 use App\Http\Controllers\Dashboard\AdSlotController;
 use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\ContactController;
 use App\Http\Controllers\Dashboard\HomeController as DashboardHomeController;
 use App\Http\Controllers\Dashboard\ProfileController as DashboardProfileController;
 use App\Http\Controllers\Dashboard\SettingController;
@@ -22,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::get('/clear', function () {
 
     Artisan::call('cache:clear');
@@ -43,19 +45,11 @@ Route::post('/postContact', [HomeController::class, 'postContact'])->name('postC
 
 Route::get('/pricing', [HomeController::class, 'pricing'])->name('pricing');
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
 Route::prefix('dashboard')
     ->name('dashboard.')
-    ->middleware(['auth', 'role:superadministrator|administrator'])
+    ->middleware(['auth', 'role:superadministrator|administrator|advertiser|user'])
     ->group(function () {
         Route::get('/home', [DashboardHomeController::class, 'index'])->name('home');
 
@@ -78,10 +72,11 @@ Route::prefix('dashboard')
         Route::get('profile/edit', [DashboardProfileController::class, 'edit'])->name('profile.edit');
         Route::post('profile/update', [DashboardProfileController::class, 'update'])->name('profile.update');
 
-
+        Route::get('contacts/index', [ContactController::class, 'index'])->name('contacts.index');
+        Route::get('contacts/view/{id}', [ContactController::class, 'view'])->name('contacts.view');
 
     });
 
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

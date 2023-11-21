@@ -8,6 +8,7 @@ use App\Models\AdClick;
 use App\Models\AdSlot;
 use App\Models\AdView;
 use App\Models\Category;
+use App\Models\Contact;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -104,6 +105,7 @@ class HomeController extends Controller
             'subject'=>'required',
             'message'=>'required',
         ]);
+        Contact::create($request->all());
         return redirect()->route('home.index');
     }
     public function pricing()

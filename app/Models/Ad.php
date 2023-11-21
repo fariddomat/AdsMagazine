@@ -47,4 +47,10 @@ class Ad extends Model
     {
         return $query->withCount('ad_views')->orderBy('ad_views_count', $direction);
     }
+
+    public function contacts()
+    {
+        return $this->hasMany(Contact::class);
+    }
+
 }
