@@ -103,10 +103,10 @@
                                     </a>
                                 </li>
                             @else
-                                <li><a href="{{ route('register', ['id' => 1]) }}"><i class="ion-person-add"></i>
+                                <li><a href="{{ route('register') }}"><i class="ion-person-add"></i>
                                         <div>Register</div>
                                     </a></li>
-                                <li><a href="{{ route('login', ['id' => 1]) }}"><i class="ion-person"></i>
+                                <li><a href="{{ route('login') }}"><i class="ion-person"></i>
                                         <div>Login</div>
                                     </a></li>
                             @endauth

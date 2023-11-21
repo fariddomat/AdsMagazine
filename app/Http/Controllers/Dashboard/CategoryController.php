@@ -22,6 +22,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        // select * from categories order by name asc
         $categories=Category::orderBy('name', 'asc')->whenSearch(request()->search)
             ->paginate(5);
         return view('dashboard.categories.index',compact('categories'));
@@ -84,7 +85,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category=Category::find($id);
+        $category=Category::findOrFail($id);
         return view('dashboard.categories.edit',compact('category'));
 
     }
@@ -127,7 +128,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category=Category::find($id);
+        $category=Category::findOrFail($id);
         $category->delete();
 
         session()->flash('success','Successfully deleted !');
