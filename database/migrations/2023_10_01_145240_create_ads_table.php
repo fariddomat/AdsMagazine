@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('media_url')->nullable();
             $table->decimal('price', 10, 2);
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('ad_slot_id');
+            $table->unsignedBigInteger('');
+            $table->unsignedBigInteger('ad_slocategory_idt_id');
+
             $table->string('status')->default('pending');
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

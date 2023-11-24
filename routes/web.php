@@ -34,6 +34,7 @@ Route::get('/clear', function () {
     // shell_exec('composer update');
     return "Cleared!";
 });
+
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/categories', [HomeController::class, 'categories'])->name('categories');
 Route::get('/show/{id}', [HomeController::class, 'show'])->name('show');

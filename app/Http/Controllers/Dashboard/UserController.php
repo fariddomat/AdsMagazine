@@ -74,7 +74,11 @@ class UserController extends Controller
             $request_data['img'] = $request->img->hashName();
         }
         $user=User::create($request_data);
+
+
         $user->addRole($request->role_id);
+
+
         session()->flash('success','Successfully Created !');
         return redirect()->route('dashboard.users.index');
     }
@@ -134,7 +138,9 @@ class UserController extends Controller
         }
 
         $user->update($request_data);
+
         $user->syncRoles([$request->role_id]);
+
         session()->flash('success','Successfully updated !');
         return redirect()->route('dashboard.users.index');
     }
