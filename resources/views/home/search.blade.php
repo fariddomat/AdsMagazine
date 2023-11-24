@@ -98,7 +98,7 @@
                                         <footer>
                                             <a href="{{ route('show', $ad->id) }}" class="" style="float: left;
                                             margin-top: 10px;
-                                            position: relative;"><i class="fa fa-eye"></i>
+                                            position: relative;"><i class="ion-eye"></i>
                                                 <div>{{ $ad->ad_clicks->count() }} views</div>
                                             </a>
                                             <a class="btn btn-primary more" href="single.html">
