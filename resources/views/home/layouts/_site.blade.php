@@ -8,7 +8,7 @@
     <meta name="description" content="ADS Magazine">
     <meta name="author" content="UOK">
     <meta name="keyword" content="ADS">
-    <title>ADS</title>
+    <title>{{ setting('site_title') }}</title>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{{ asset('home/scripts/bootstrap/bootstrap.min.css') }}">
     <!-- IonIcons -->
@@ -36,23 +36,23 @@
 
         .bg-blue {
             /* background-color: #626EEF; */
-            background: linear-gradient(to bottom,#626EEF, #bbdfff);
+            background: linear-gradient(to bottom, #626EEF, #bbdfff);
 
         }
 
         .bg-purple {
             /* background-color: #8e44ad; */
-            background: linear-gradient(to bottom,#8e44ad, #bbbcff);
+            background: linear-gradient(to bottom, #8e44ad, #bbbcff);
         }
 
         .bg-default {
             /* background-color: #F73F52; */
-            background: linear-gradient(to bottom,#F73F52, #fbb);
+            background: linear-gradient(to bottom, #F73F52, #fbb);
         }
 
         .bg-orange {
             /* background-color: #FC624D; */
-            background: linear-gradient(to bottom,#FC6240, #fff8bb);
+            background: linear-gradient(to bottom, #FC6240, #fff8bb);
         }
     </style>
     @yield('styles')
@@ -155,7 +155,7 @@
     <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="block">
                         <h1 class="block-title"> Info</h1>
                         <div class="block-body">
@@ -171,111 +171,26 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 col-xs-12">
 
-                    <div class="block">
-                        <h1 class="block-title">Newsletter</h1>
-                        <div class="block-body">
-                            <p>By subscribing you will receive new articles in your email.</p>
-                            <form class="newsletter">
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="ion-ios-email-outline"></i>
-                                    </div>
-                                    <input type="email" class="form-control email" placeholder="Your mail">
-                                </div>
-                                <button class="btn btn-primary btn-block white">Subscribe</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-xs-12 col-sm-6">
+                <div class="col-md-6 col-xs-12 col-sm-6">
                     <div class="block">
                         <h1 class="block-title">Follow Us</h1>
                         <div class="block-body">
                             <p>Follow us and stay in touch to get the latest news</p>
                             <ul class="social trp">
-                                <li>
-                                    <a href="#" class="facebook">
-                                        <svg>
-                                            <rect width="0" height="0" />
-                                        </svg>
-                                        <i class="ion-social-facebook"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="twitter">
-                                        <svg>
-                                            <rect width="0" height="0" />
-                                        </svg>
-                                        <i class="ion-social-twitter-outline"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="youtube">
-                                        <svg>
-                                            <rect width="0" height="0" />
-                                        </svg>
-                                        <i class="ion-social-youtube-outline"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="googleplus">
-                                        <svg>
-                                            <rect width="0" height="0" />
-                                        </svg>
-                                        <i class="ion-social-googleplus"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="instagram">
-                                        <svg>
-                                            <rect width="0" height="0" />
-                                        </svg>
-                                        <i class="ion-social-instagram-outline"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="tumblr">
-                                        <svg>
-                                            <rect width="0" height="0" />
-                                        </svg>
-                                        <i class="ion-social-tumblr"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="dribbble">
-                                        <svg>
-                                            <rect width="0" height="0" />
-                                        </svg>
-                                        <i class="ion-social-dribbble"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="linkedin">
-                                        <svg>
-                                            <rect width="0" height="0" />
-                                        </svg>
-                                        <i class="ion-social-linkedin"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="skype">
-                                        <svg>
-                                            <rect width="0" height="0" />
-                                        </svg>
-                                        <i class="ion-social-skype"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="rss">
-                                        <svg>
-                                            <rect width="0" height="0" />
-                                        </svg>
-                                        <i class="ion-social-rss"></i>
-                                    </a>
-                                </li>
+                                @php
+                                    $social_sites = ['facebook', 'whatsapp', 'youtube', 'snapchat', 'twitter', 'instagram'];
+                                @endphp
+                                 @foreach ($social_sites as $social_site)
+                                    <li>
+                                        <a href="{{ setting($social_site . '_link') }}" class="{{ $social_site }}">
+                                            <svg>
+                                                <rect width="0" height="0" />
+                                            </svg>
+                                            <i class="ion-social-{{ $social_site }}"></i>
+                                        </a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>

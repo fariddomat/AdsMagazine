@@ -29,23 +29,7 @@
                             @endforeach
                         </div>
                     </aside>
-                    <aside>
-                        <div class="aside-body">
-                            <form class="newsletter">
-                                <div class="icon">
-                                    <i class="ion-ios-email-outline"></i>
-                                    <h1>Newsletter</h1>
-                                </div>
-                                <div class="input-group">
-                                    <input type="email" class="form-control email" placeholder="Your mail">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-primary"><i class="ion-paper-airplane"></i></button>
-                                    </div>
-                                </div>
-                                <p>By subscribing you will receive new articles in your email.</p>
-                            </form>
-                        </div>
-                    </aside>
+                   
                 </div>
                 <div class="col-md-8">
                     <ol class="breadcrumb">
@@ -99,43 +83,7 @@
 
                         </div>
                     </div>
-                    {{-- <div class="line">
-                        <div>You May Also Like</div>
-                    </div>
-                    <div class="row">
-                        <article class="article related col-md-6 col-sm-6 col-xs-12">
-                            <div class="inner">
-                                <figure>
-                                    <a href="#">
-                                        <img src="{{ asset('home/images/news/img03.jpg') }}">
-                                    </a>
-                                </figure>
-                                <div class="padding">
-                                    <h2><a href="#">Duis aute irure dolor in reprehenderit in voluptate</a></h2>
-                                    <div class="detail">
-                                        <div class="category"><a href="category.html">Lifestyle</a></div>
-                                        <div class="time">December 26, 2016</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="article related col-md-6 col-sm-6 col-xs-12">
-                            <div class="inner">
-                                <figure>
-                                    <a href="#">
-                                        <img src="{{ asset('home/images/news/img08.jpg') }}">
-                                    </a>
-                                </figure>
-                                <div class="padding">
-                                    <h2><a href="#">Duis aute irure dolor in reprehenderit in voluptate</a></h2>
-                                    <div class="detail">
-                                        <div class="category"><a href="category.html">Lifestyle</a></div>
-                                        <div class="time">December 26, 2016</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </div> --}}
+
                     <div class="line thin"></div>
                     <div class="comments">
                         <h2 class="title">Comments</a></h2>

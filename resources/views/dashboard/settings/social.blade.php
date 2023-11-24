@@ -16,7 +16,7 @@
 
                             <div class="row pr-2 pl-2">
                                 @php
-                                    $social_sites = ['facebook', 'whatsapp', 'youtube', 'snapchat', 'tiktok', 'twitter', 'instagram'];
+                                    $social_sites = ['facebook', 'whatsapp', 'youtube', 'snapchat', 'twitter', 'instagram'];
                                 @endphp
                                 @foreach ($social_sites as $social_site)
                                     {{-- client id --}}
