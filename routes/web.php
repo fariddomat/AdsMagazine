@@ -8,6 +8,7 @@ use App\Http\Controllers\Dashboard\HomeController as DashboardHomeController;
 use App\Http\Controllers\Dashboard\ProfileController as DashboardProfileController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\UserController;
+use App\Http\Controllers\Home\CommentController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Artisan;
@@ -42,9 +43,14 @@ Route::get('/search', [HomeController::class, 'search'])->name('search');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::post('/postContact', [HomeController::class, 'postContact'])->name('postContact');
-
-
 Route::get('/pricing', [HomeController::class, 'pricing'])->name('pricing');
+
+
+// comment routes
+Route::post('/comment/store',[CommentController::class, 'store'])->name('comment.store');
+Route::post('/comment/replyStore', [CommentController::class, 'replyStore'])->name('comment.reply');
+Route::get('/comment/destroy/{id}',[CommentController::class, 'destroy'])->name('comment.destroy');
+Route::get('/comment/report/{id}',[CommentController::class, 'report'] )->name('comment.report');
 
 
 

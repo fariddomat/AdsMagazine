@@ -53,4 +53,30 @@ class Ad extends Model
         return $this->hasMany(Contact::class);
     }
 
+
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable')->whereNull('parent_id');
+    }
+
+
+
+    public function favorites()
+    {
+        return $this->belongsToMany(User::class, 'favorites');
+
+    }
+
+    public function scopeWhenFavorite($query, $favorite)
+    {
+        return $query->when($favorite, function ($q) {
+
+            return $q->whereHas('favorites', function ($qu) {
+
+                return $qu->where('user_id', auth()->user()->id);
+            });
+        });
+    }
+
 }
