@@ -11,13 +11,18 @@ use App\Models\Category;
 use App\Models\Contact;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
     public function index()
     {
-
-        $ads = Ad::latest()->paginate(6);
+        $ads = Ad::with('ad_slot')
+            ->whereHas('ad_slot', function ($query) {
+                $query->where(DB::raw('DATE_ADD(ads.created_at, INTERVAL ad_slots.duration DAY)'), '>', now())->orderByDesc('ad_slots.price');
+            })
+            ->orderBy('ads.created_at', 'desc')
+            ->paginate(6);
         foreach ($ads as $ad) {
             AdView::create([
                 'ad_id' => $ad->id,
@@ -26,7 +31,7 @@ class HomeController extends Controller
         }
         $adsWithMostViews = Ad::orderByViews()->limit(4)->get();
         $adsWithMostClicks = Ad::orderByClicks()->limit(6)->get();
-        
+
         $userWithMostAdViews = User::withCount('ads', 'adViews')
             ->orderByDesc('ads_count')
             ->orderByDesc('ad_views_count')
@@ -54,27 +59,27 @@ class HomeController extends Controller
     }
     public function search(Request $request)
     {
-        $ads_count=Ad::count();
-        if ($request->category_id !='') {
-            $query=$request->category_id;
-            $ads=Ad::whereHas('category', function ($userQuery) use ($query) {
-                $userQuery->where('id',"$query");
+        $ads_count = Ad::count();
+        if ($request->category_id != '') {
+            $query = $request->category_id;
+            $ads = Ad::whereHas('category', function ($userQuery) use ($query) {
+                $userQuery->where('id', "$query");
             })->paginate(5);
             // dd($ads);
             $ads->appends(['category_id' => $request->input('category_id')]);
             $ads->appends(['search' => $request->input('search')]);
-            return view('home.search', compact('ads','ads_count'));
+            return view('home.search', compact('ads', 'ads_count'));
         }
 
-        if ($request->user_id !='') {
-            $query=$request->user_id;
-            $ads=Ad::whereHas('user', function ($userQuery) use ($query) {
-                $userQuery->where('id',"$query");
+        if ($request->user_id != '') {
+            $query = $request->user_id;
+            $ads = Ad::whereHas('user', function ($userQuery) use ($query) {
+                $userQuery->where('id', "$query");
             })->paginate(5);
             // dd($ads);
             $ads->appends(['user_id' => $request->input('user_id')]);
             $ads->appends(['search' => $request->input('search')]);
-            return view('home.search', compact('ads','ads_count'));
+            return view('home.search', compact('ads', 'ads_count'));
         }
         $query = $request->input('search');
 
@@ -84,7 +89,7 @@ class HomeController extends Controller
                 $userQuery->where('name', 'like', "%$query%");
             })
             ->paginate(5);
-            $ads->appends(['search' => $request->input('search')]);
+        $ads->appends(['search' => $request->input('search')]);
 
         return view('home.search', compact('ads', 'ads_count'));
     }
@@ -94,17 +99,17 @@ class HomeController extends Controller
     }
     public function contact()
     {
-        $ads=Ad::all();
+        $ads = Ad::all();
         return view('home.contact', compact('ads'));
     }
     public function postContact(Request $request)
     {
         $request->validate([
-            'ad_id'=>'required',
-            'name'=>'required',
-            'email'=>'required',
-            'subject'=>'required',
-            'message'=>'required',
+            'ad_id' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'subject' => 'required',
+            'message' => 'required',
         ]);
         Contact::create($request->all());
         return redirect()->route('home.index');
