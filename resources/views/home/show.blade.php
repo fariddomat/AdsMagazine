@@ -13,7 +13,7 @@
                                 <article class="article-mini">
                                     <div class="inner">
                                         <figure>
-                                            <a href="single.html">
+                                            <a href="{{ route('show', $ad->id) }}">
                                                 <img src="{{ asset('storage/ads/' . $ad1->media_url) }}">
                                             </a>
                                         </figure>
@@ -29,7 +29,7 @@
                             @endforeach
                         </div>
                     </aside>
-                   
+
                 </div>
                 <div class="col-md-8">
                     <ol class="breadcrumb">

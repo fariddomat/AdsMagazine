@@ -92,6 +92,9 @@
                                             <time>{{ $ad->created_at->diffForHumans() }}</time>
                                         </div>
                                         <h1><a href="{{ route('show', $ad->id) }}">{{ $ad->title }}</a></h1>
+
+
+                                        <h2><a href="{{ route('search', ['user_id'=> $ad->user_id]) }}">By : {{ $ad->user->name }}</a></h2>
                                         <p>
                                             {!! $ad->description !!}
                                         </p>
@@ -99,9 +102,9 @@
                                             <a href="{{ route('show', $ad->id) }}" class="" style="float: left;
                                             margin-top: 10px;
                                             position: relative;"><i class="ion-eye"></i>
-                                                <div>{{ $ad->ad_clicks->count() }} views</div>
+                                               {{ $ad->ad_clicks->count() }}
                                             </a>
-                                            <a class="btn btn-primary more" href="single.html">
+                                            <a class="btn btn-primary more" href="{{ route('show', $ad->id) }}">
                                                 <div>More</div>
                                                 <div><i class="ion-ios-arrow-thin-right"></i></div>
                                             </a>

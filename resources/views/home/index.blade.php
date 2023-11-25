@@ -38,6 +38,7 @@
                                     <div class="details">
                                         <div class="category"><a>{{ $ad->category->name }}</a></div>
                                         <h1><a href="{{ route('show', $ad->id) }}">{{ $ad->title }}</a></h1>
+                                        <h3><a href="{{ route('search', ['user_id'=> $ad->user_id]) }}">By : {{ $ad->user->name }}</a></h3>
                                         <div class="time">{{ $ad->created_at->diffForHumans() }}</div>
                                     </div>
                                 </article>
@@ -66,10 +67,13 @@
                                                     <div class="category"><a>{{ $ad->category->name }}</a></div>
                                                 </div>
                                                 <h2><a href="{{ route('show', $ad->id) }}">{{ $ad->title }}</a></h2>
+
+                                        <h2><a href="{{ route('search', ['user_id'=> $ad->user_id]) }}">By : {{ $ad->user->name }}</a></h2>
                                                 <p>{{ $ad->description }}</p>
                                                 <footer>
 
                                                     <a class="btn btn-primary more" href="{{ route('show', $ad->id) }}">
+
                                                         <div>More</div>
                                                         <div><i class="ion-ios-arrow-thin-right"></i></div>
                                                     </a>
@@ -140,7 +144,7 @@
                         </div>
                     </aside>
 
-                  
+
                 </div>
             </div>
         </div>
@@ -159,12 +163,13 @@
                     </div>
                 </div>
             </h1>
-            <div class="owl-carousel owl-theme carousel-1">
+            <div class="owl-carousel owl-theme carousel-1 carousel-item-4">
+
                 @foreach ($adsWithMostClicks as $ad)
                     <article class="article">
                         <div class="inner">
                             <figure>
-                                <a href="single.html">
+                                <a href="{{ route('show', $ad->id) }}">
                                     <img src="{{ asset('storage/ads/' . $ad->media_url) }}" alt="Sample Article">
                                 </a>
                             </figure>
@@ -173,7 +178,7 @@
                                     <div class="time">{{ $ad->created_at->diffForHumans() }}</div>
                                     <div class="category"><a>{{ $ad->category->name }}</a></div>
                                 </div>
-                                <h2><a href="single.html">{{ $ad->title }}</a></h2>
+                                <h2><a href="{{ route('show', $ad->id) }}">{{ $ad->title }}</a></h2>
                                 <p>{{ $ad->description }}</p>
                             </div>
                         </div>

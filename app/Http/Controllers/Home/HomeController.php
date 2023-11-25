@@ -26,6 +26,7 @@ class HomeController extends Controller
         }
         $adsWithMostViews = Ad::orderByViews()->limit(4)->get();
         $adsWithMostClicks = Ad::orderByClicks()->limit(6)->get();
+        
         $userWithMostAdViews = User::withCount('ads', 'adViews')
             ->orderByDesc('ads_count')
             ->orderByDesc('ad_views_count')
