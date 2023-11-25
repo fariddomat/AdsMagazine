@@ -37,7 +37,7 @@ Route::get('/clear', function () {
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
-Route::get('/categories', [HomeController::class, 'categories'])->name('categories');
+Route::get('/category', [HomeController::class, 'categories'])->name('categories');
 Route::get('/show/{id}', [HomeController::class, 'show'])->name('show');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 Route::get('/about', [HomeController::class, 'about'])->name('about');

@@ -17,7 +17,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $ads = Ad::with('ad_slot')
+        $ads = Ad::where('status','approved')->with('ad_slot')
             ->whereHas('ad_slot', function ($query) {
                 $query->where(DB::raw('DATE_ADD(ads.created_at, INTERVAL ad_slots.duration DAY)'), '>', now())->orderByDesc('ad_slots.price');
             })
@@ -29,8 +29,8 @@ class HomeController extends Controller
                 'user_id' => auth()->id(),
             ]);
         }
-        $adsWithMostViews = Ad::orderByViews()->limit(4)->get();
-        $adsWithMostClicks = Ad::orderByClicks()->limit(6)->get();
+        $adsWithMostViews = Ad::where('status','approved')->orderByViews()->limit(4)->get();
+        $adsWithMostClicks = Ad::where('status','approved')->orderByClicks()->limit(6)->get();
 
         $userWithMostAdViews = User::withCount('ads', 'adViews')
             ->orderByDesc('ads_count')
@@ -45,7 +45,7 @@ class HomeController extends Controller
     }
     public function show($id)
     {
-        $ads = Ad::latest()->limit(4)->get();
+        $ads = Ad::where('status','approved')->latest()->limit(4)->get();
         $ad = Ad::findOrFail($id);
         AdView::create([
             'ad_id' => $ad->id,
@@ -62,7 +62,7 @@ class HomeController extends Controller
         $ads_count = Ad::count();
         if ($request->category_id != '') {
             $query = $request->category_id;
-            $ads = Ad::whereHas('category', function ($userQuery) use ($query) {
+            $ads = Ad::where('status','approved')->whereHas('category', function ($userQuery) use ($query) {
                 $userQuery->where('id', "$query");
             })->paginate(5);
             // dd($ads);
@@ -73,7 +73,7 @@ class HomeController extends Controller
 
         if ($request->user_id != '') {
             $query = $request->user_id;
-            $ads = Ad::whereHas('user', function ($userQuery) use ($query) {
+            $ads = Ad::where('status','approved')->whereHas('user', function ($userQuery) use ($query) {
                 $userQuery->where('id', "$query");
             })->paginate(5);
             // dd($ads);
@@ -83,7 +83,7 @@ class HomeController extends Controller
         }
         $query = $request->input('search');
 
-        $ads = Ad::where('title', 'like', "%$query%")
+        $ads = Ad::where('status','approved')->where('title', 'like', "%$query%")
             ->orWhere('description', 'like', "%$query%")
             ->orWhereHas('user', function ($userQuery) use ($query) {
                 $userQuery->where('name', 'like', "%$query%");
