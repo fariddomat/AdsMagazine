@@ -9,9 +9,10 @@ use Illuminate\Http\Request;
 class AdSlotController extends Controller
 {
 
+
     public function __construct()
     {
-
+        $this->middleware(['role:superadministrator|administrator']);
     }
 
     /**

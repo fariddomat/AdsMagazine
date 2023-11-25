@@ -14,6 +14,10 @@ use Intervention\Image\Facades\Image;
 
 class AdController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['role:superadministrator|administrator|advertiser']);
+    }
     /**
      * Display a listing of the resource.
      */

@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Auth;
 
 class ContactController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['role:superadministrator|administrator|advertiser']);
+    }
     public function index(){
 
         if (auth()->user()->hasRole('advertiser')) {
