@@ -16,7 +16,7 @@
                 <div class="owl-carousel owl-carousel-2 carousel-item-4 position-relative">
                     @foreach ($categories as $category)
                         <div class="position-relative overflow-hidden" style="height: 300px;">
-                            <img class="img-fluid w-100 h-100" src="{{ asset('storage/categories/' . $category->img) }}"
+                            <img class="img-fluid w-100 h-100" src="{{ asset('categories/' . $category->img) }}"
                                 style="object-fit: cover;">
                             <div class="overlay" style="  padding: 15px 0px;">
                                 <div class="mb-1" style="font-size: 13px;">
@@ -42,7 +42,7 @@
                                 @foreach ($categories->where('name', 'Electronics') as $category)
                                     @foreach ($category->ads as $ad)
                                         <div class="position-relative">
-                                            <img class="img-fluid w-100" src="{{ asset('storage/ads/' . $ad->media_url) }}"
+                                            <img class="img-fluid w-100" src="{{ asset('ads/' . $ad->media_url) }}"
                                                 style="object-fit: cover;">
                                             <div class="overlay position-relative bg-light" style="  padding: 15px 0px;">
                                                 <div class="mb-2" style="font-size: 13px;">
@@ -65,7 +65,7 @@
                                 @foreach ($categories->where('name', 'Sport') as $category)
                                     @foreach ($category->ads as $ad)
                                         <div class="position-relative">
-                                            <img class="img-fluid w-100" src="{{ asset('storage/ads/' . $ad->media_url) }}"
+                                            <img class="img-fluid w-100" src="{{ asset('ads/' . $ad->media_url) }}"
                                                 style="object-fit: cover;">
                                             <div class="overlay position-relative bg-light" style="  padding: 15px 0px;">
                                                 <div class="mb-2" style="font-size: 13px;">

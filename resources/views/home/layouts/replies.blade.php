@@ -14,7 +14,7 @@
             <div class="item">
                 <div class="user">
                     <figure>
-                        <img src="{{ asset('storage/users/.' . $comment->user->img) }}">
+                        <img src="{{ asset('users/.' . $comment->user->img) }}">
                     </figure>
                     <div class="details">
                         <h5 class="name">{{ $comment->user->name }}</h5>

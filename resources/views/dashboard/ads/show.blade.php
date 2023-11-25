@@ -26,7 +26,7 @@
                                         class="form-control" id="basicInput" required disabled>
 
                                     <h5 class="mt-2">Media (Image)</h5>
-                                    <img src="{{ asset('storage/ads/' . $ad->media_url) }}" alt=""
+                                    <img src="{{ asset('ads/' . $ad->media_url) }}" alt=""
                                         style="max-width: 250px">
 
 

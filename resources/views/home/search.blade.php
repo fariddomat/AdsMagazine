@@ -81,7 +81,7 @@
                                 <div class="inner">
                                     <figure>
                                         <a href="{{ route('show', $ad->id) }}">
-                                            <img src="{{ asset('storage/ads/' . $ad->media_url) }}">
+                                            <img src="{{ asset('ads/' . $ad->media_url) }}">
                                         </a>
                                     </figure>
                                     <div class="details">

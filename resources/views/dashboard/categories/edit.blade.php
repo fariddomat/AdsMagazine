@@ -25,7 +25,7 @@
                                     <input type="file" class="form-control" name="img" id="img"
                                         value="{{ old('img') }}" aria-describedby="helpId" placeholder="">
 
-                                    <img src="{{ asset('storage/categories/' . $category->img) }}" alt=""
+                                    <img src="{{ asset('categories/' . $category->img) }}" alt=""
                                         style="max-width: 250px">
 
                                     <button class="btn btn-icon btn-info mr-1 mt-2"> Edit <i class="fa fa-edit"

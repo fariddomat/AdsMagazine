@@ -31,7 +31,7 @@
                                         <h5 class="mt-2">Media (Image)</h5>
                                         <input value="{{ old('media') }}" name="media" type="file"
                                             class="form-control" id="basicInput">
-                                        <img src="{{ asset('storage/ads/'.$ad->media_url) }}" alt="" style="max-width: 250px">
+                                        <img src="{{ asset('ads/'.$ad->media_url) }}" alt="" style="max-width: 250px">
 
 
                                     </fieldset>

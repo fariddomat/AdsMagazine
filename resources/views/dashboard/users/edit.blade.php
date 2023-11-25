@@ -55,7 +55,7 @@
                             <input type="file" class="form-control" name="img" id="img" value="{{ old('img') }}"
                                 aria-describedby="helpId" placeholder="">
                         </div>
-                        <img src="{{ asset('storage/users/'.$user->img) }}" alt="" style="max-width: 250px">
+                        <img src="{{ asset('users/'.$user->img) }}" alt="" style="max-width: 250px">
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>
                                 Edit</button>

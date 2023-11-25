@@ -33,7 +33,7 @@
                                 <article class="featured">
                                     <div class="overlay"></div>
                                     <figure>
-                                        <img src="{{ asset('storage/ads/' . $ad->media_url) }}" alt="Sample Article">
+                                        <img src="{{ asset('ads/' . $ad->media_url) }}" alt="Sample Article">
                                     </figure>
                                     <div class="details">
                                         <div class="category"><a>{{ $ad->category->name }}</a></div>
@@ -57,7 +57,7 @@
                                         <div class="inner">
                                             <figure>
                                                 <a href="{{ route('show', $ad->id) }}">
-                                                    <img src="{{ asset('storage/ads/' . $ad->media_url) }}"
+                                                    <img src="{{ asset('ads/' . $ad->media_url) }}"
                                                         alt="Sample Article">
                                                 </a>
                                             </figure>
@@ -103,13 +103,13 @@
                             <div class="featured-author">
                                 <div class="featured-author-inner">
                                     <div class="featured-author-cover"
-                                        style="background-image: url({{ asset('storage/users/' . $userWithMostAdViews->img) }});">
+                                        style="background-image: url({{ asset('users/' . $userWithMostAdViews->img) }});">
                                         <div class="badges">
                                             <div class="badge-item"><i class="ion-star"></i> Top Advisior</div>
                                         </div>
                                         <div class="featured-author-center">
                                             <figure class="featured-author-picture">
-                                                <img src="{{ asset('storage/users/' . $userWithMostAdViews->img) }}"
+                                                <img src="{{ asset('users/' . $userWithMostAdViews->img) }}"
                                                     alt="Sample Article">
                                             </figure>
                                             <div class="featured-author-info">
@@ -170,7 +170,7 @@
                         <div class="inner">
                             <figure>
                                 <a href="{{ route('show', $ad->id) }}">
-                                    <img src="{{ asset('storage/ads/' . $ad->media_url) }}" alt="Sample Article">
+                                    <img src="{{ asset('ads/' . $ad->media_url) }}" alt="Sample Article">
                                 </a>
                             </figure>
                             <div class="padding">

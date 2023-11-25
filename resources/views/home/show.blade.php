@@ -14,7 +14,7 @@
                                     <div class="inner">
                                         <figure>
                                             <a href="{{ route('show', $ad->id) }}">
-                                                <img src="{{ asset('storage/ads/' . $ad1->media_url) }}">
+                                                <img src="{{ asset('ads/' . $ad1->media_url) }}">
                                             </a>
                                         </figure>
                                         <div class="padding">
@@ -48,7 +48,7 @@
                         <div class="main">
                             <div class="featured">
                                 <figure>
-                                    <img src="{{ asset('storage/ads/' . $ad->media_url) }}">
+                                    <img src="{{ asset('ads/' . $ad->media_url) }}">
                                     <figcaption>Image by pexels.com</figcaption>
                                 </figure>
                             </div>
@@ -73,7 +73,7 @@
                     </div>
                     <div class="author">
                         <figure>
-                            <img src="{{ asset('storage/users/' . $ad->user->img) }}">
+                            <img src="{{ asset('users/' . $ad->user->img) }}">
                         </figure>
                         <div class="details">
                             <h3 class="name">{{ $ad->user->name }}</h3>
