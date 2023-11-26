@@ -145,6 +145,29 @@
                     </aside>
 
 
+                    <aside>
+                        <h1 class="aside-title">Most Orderd Ads</h1>
+                        <div class="aside-body">
+                            @foreach ($adsWithMostContacts as $ad2)
+                                <article class="article-mini">
+                                    <div class="inner">
+                                        <figure>
+                                            <a href="{{ route('show', $ad2->id) }}">
+                                                <img src="{{ asset('ads/' . $ad2->media_url) }}">
+                                            </a>
+                                        </figure>
+                                        <div class="padding">
+                                            <h1><a href="{{ route('show', $ad2->id) }}">{{ $ad2->title }}</a></h1>
+                                            <div class="detail">
+                                                <div class="category"><a>{{ $ad2->category->name }}</a></div>
+                                                <div class="time">{{ $ad2->created_at->diffForHumans() }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            @endforeach
+                        </div>
+                    </aside>
                 </div>
             </div>
         </div>

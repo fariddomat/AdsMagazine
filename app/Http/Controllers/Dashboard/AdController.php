@@ -8,7 +8,7 @@ use App\Models\AdSlot;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
@@ -25,10 +25,10 @@ class AdController extends Controller
     {
         $ads='';
         if (auth()->user()->hasRole('advertiser')) {
-            $ads = Ad::where('user_id', auth()->id())->paginate(10);
+            $ads = Ad::where('user_id', auth()->id())->latest()->paginate(10);
         } else {
 
-            $ads = Ad::paginate(10);
+            $ads = Ad::latest()->paginate(10);
         }
         return view('dashboard.ads.index', compact('ads'));
     }
@@ -66,14 +66,15 @@ class AdController extends Controller
         $request_data = $request->except(['media']);
 
         if ($request->media) {
-            $media = Image::make($request->media)->resize(500, null, function ($constraint) {
-                $constraint->aspectRatio();
-            })
+            $media = Image::make($request->media)->resize(671, 480)
                 ->encode('webp', 90);
             Storage::disk('public')->put('ads/' . $request->media->hashName(), (string)$media, 'public');
             $request_data['media_url'] = $request->media->hashName();
         }
         // Create a new ad
+        if (Auth::user()->status == 'active') {
+            $request_data['status']='approved';
+        }
         Ad::create($request_data);
 
         // Redirect to the ads index page or any other desired route
@@ -127,9 +128,7 @@ class AdController extends Controller
 
         if ($request->media) {
             Storage::disk('public')->delete('ads/' . $ad->media_url);
-            $media = Image::make($request->media)->resize(500, null, function ($constraint) {
-                $constraint->aspectRatio();
-            })
+            $media = Image::make($request->media)->resize(671, 480)
                 ->encode('webp', 90);
             Storage::disk('public')->put('ads/' . $request->media->hashName(), (string)$media, 'public');
             $request_data['media_url'] = $request->media->hashName();
@@ -154,7 +153,7 @@ class AdController extends Controller
     {
         $ad = Ad::findOrFail($id);
         $ad->update([
-            'status' => 'accept'
+            'status' => 'approved'
         ]);
         return redirect()->route('dashboard.ads.index')->with('success', 'Ad Accepted successfully');
     }

@@ -101,6 +101,10 @@
                                         <i class="ft-power"></i>
                                         <div>logout</div>
                                     </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                                 </li>
                             @else
                                 <li><a href="{{ route('register') }}"><i class="ion-person-add"></i>

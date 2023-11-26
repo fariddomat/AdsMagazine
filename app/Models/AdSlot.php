@@ -18,7 +18,7 @@ class AdSlot extends Model
             return $q->where('name','like',"%$search%");
         });
     }
-    
+
     public function ads()
     {
         return $this->hasMany(Ad::class);

@@ -55,9 +55,7 @@ class CategoryController extends Controller
         $request_data = $request->except(['img']);
 
         if ($request->img) {
-            $img = Image::make($request->img)->resize(500, null, function ($constraint) {
-                $constraint->aspectRatio();
-            })
+            $img = Image::make($request->img)->resize(671, 480)
                 ->encode('webp', 90);
             Storage::disk('public')->put('categories/'. $request->img->hashName(), (string)$img, 'public');
             $request_data['img'] = $request->img->hashName();
@@ -107,9 +105,7 @@ class CategoryController extends Controller
         $request_data = $request->except(['img']);
         if ($request->img) {
             Storage::disk('public')->delete('categories/' . $category->img);
-            $img = Image::make($request->img)->resize(500, null, function ($constraint) {
-                $constraint->aspectRatio();
-            })
+            $img = Image::make($request->img)->resize(671, 480)
                 ->encode('webp', 90);
             Storage::disk('public')->put('categories/'. $request->img->hashName(), (string)$img, 'public');
             $request_data['img'] = $request->img->hashName();

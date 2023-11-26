@@ -28,6 +28,15 @@
 									<input type="password" name="password_confirmation" class="form-control">
 								</div>
                                 {{-- password_confirmation --}}
+
+
+                                <div class="form-group">
+									<label>Role</label>
+									<select name="role" class="form-control">
+                                        <option value="advertiser">Advertiser</option>
+                                        <option value="user">User</option>
+                                    </select>
+								</div>
 								<div class="form-group text-right">
 									<button class="btn btn-primary btn-block">Register</button>
 								</div>

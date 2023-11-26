@@ -10,6 +10,7 @@ use Session;
 
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+
 class UserController extends Controller
 {
 
@@ -26,14 +27,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        $roles=Role::whereRoleNot(['superadministrator'])->get();
+        $roles = Role::whereRoleNot(['superadministrator'])->get();
 
-        $users=User::whereRoleNot(['superadministrator'])
+        $users = User::whereRoleNot(['superadministrator'])
             ->whenSearch(request()->search)
             ->whenRole(request()->role_id)
             ->with('roles')
             ->paginate(5);
-        return view('dashboard.users.index',compact('users','roles'));
+        return view('dashboard.users.index', compact('users', 'roles'));
     }
 
     /**
@@ -43,9 +44,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles=Role::whereRoleNot(['superadministrator'])->get();
-        return view('dashboard.users.create',compact('roles'));
-
+        $roles = Role::whereRoleNot(['superadministrator'])->get();
+        return view('dashboard.users.create', compact('roles'));
     }
 
     /**
@@ -58,12 +58,12 @@ class UserController extends Controller
     {
         // dd($request->role_id);
         $request->validate([
-            'name'=>'required',
-            'email'=>'required|email|unique:users,email',
-            'password'=>'required|confirmed',
-            'role_id'=>'required|numeric',
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|confirmed',
+            'role_id' => 'required|numeric',
         ]);
-        $request->merge(['password'=>bcrypt($request->password)]);
+        $request->merge(['password' => bcrypt($request->password)]);
         $request_data = $request->except(['img']);
 
         if ($request->img) {
@@ -71,16 +71,16 @@ class UserController extends Controller
                 $constraint->aspectRatio();
             })
                 ->encode('webp', 90);
-            Storage::disk('public')->put('users/'. $request->img->hashName(), (string)$img, 'public');
+            Storage::disk('public')->put('users/' . $request->img->hashName(), (string)$img, 'public');
             $request_data['img'] = $request->img->hashName();
         }
-        $user=User::create($request_data);
+        $user = User::create($request_data);
 
 
         $user->addRole($request->role_id);
 
 
-        session()->flash('success','Successfully Created !');
+        session()->flash('success', 'Successfully Created !');
         return redirect()->route('dashboard.users.index');
     }
 
@@ -103,11 +103,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $roles=Role::whereRoleNot(['superadministrator'])->get();
+        $roles = Role::whereRoleNot(['superadministrator'])->get();
 
-        $user=User::find($id);
-        return view('dashboard.users.edit',compact('roles','user'));
-
+        $user = User::find($id);
+        return view('dashboard.users.edit', compact('roles', 'user'));
     }
 
     /**
@@ -120,11 +119,11 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>'required',
-            'email'=>'required|email|unique:users,email,' . $id,
-            'role_id'=>'required|numeric',
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'role_id' => 'required|numeric',
         ]);
-        $user=User::find($id);
+        $user = User::find($id);
 
 
         $request_data = $request->except(['img']);
@@ -134,7 +133,7 @@ class UserController extends Controller
                 $constraint->aspectRatio();
             })
                 ->encode('webp', 90);
-            Storage::disk('public')->put('users/'. $request->img->hashName(), (string)$img, 'public');
+            Storage::disk('public')->put('users/' . $request->img->hashName(), (string)$img, 'public');
             $request_data['img'] = $request->img->hashName();
         }
 
@@ -142,7 +141,7 @@ class UserController extends Controller
 
         $user->syncRoles([$request->role_id]);
 
-        session()->flash('success','Successfully updated !');
+        session()->flash('success', 'Successfully updated !');
         return redirect()->route('dashboard.users.index');
     }
 
@@ -154,10 +153,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user=User::find($id);
+        $user = User::find($id);
         $user->delete();
 
-        Session::flash('success','Successfully deleted !');
+        Session::flash('success', 'Successfully deleted !');
         return redirect()->route('dashboard.users.index');
     }
 
@@ -167,7 +166,7 @@ class UserController extends Controller
         $user = User::find($id);
         if ($user) {
             $user->update([
-                'status'=>'ban'
+                'status' => 'ban'
             ]);
 
             return redirect()->route('dashboard.users.index');
@@ -180,10 +179,22 @@ class UserController extends Controller
         $user = User::find($id);
         if ($user) {
             $user->update([
-                'status'=>'active'
+                'status' => 'active'
             ]);
             return redirect()->route('dashboard.users.index');
         } else
             return response()->json(['message' => 'error'], 404);
+    }
+
+    public function active($id)
+    {
+
+        $user = User::findOrFail($id);
+
+        $user->update([
+            'status' => 'active'
+        ]);
+
+        return redirect()->route('dashboard.users.index');
     }
 }

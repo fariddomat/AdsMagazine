@@ -34,15 +34,14 @@ return [
             'driver' => 'local',
             'root' => public_path(),
             'url' => env('APP_URL') . '/public',
-            'throw' => false,
+            'visibility' => 'public',
         ],
 
         'public' => [
             'driver' => 'local',
             'root' => public_path(),
-            'url' => env('APP_URL') . '/public',
+            'url' => env('APP_URL').'/public',
             'visibility' => 'public',
-            'throw' => false,
         ],
 
         's3' => [
@@ -71,7 +70,7 @@ return [
     */
 
     'links' => [
-        public_path('storage') => storage_path('app/public'),
+        public_path('storage') => public_path(),
     ],
 
 ];

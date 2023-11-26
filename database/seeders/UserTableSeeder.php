@@ -21,14 +21,16 @@ class UserTableSeeder extends Seeder
             'name' => 'Super Admin',
             'email' => 'super_admin@ads.com',
             'password' => bcrypt('admin'),
+            'status' => 'active',
         ]);
         $user->addRole('superadministrator');
 
 
         $user2 = User::create([
-            'name' => 'Super Admin',
+            'name' => 'Admin',
             'email' => 'admin@ads.com',
             'password' => bcrypt('admin'),
+            'status' => 'active',
         ]);
         $user2->addRole('administrator');
 

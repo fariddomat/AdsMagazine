@@ -21,13 +21,13 @@ return [
             'ads' => 'c,r,u,d',
             'profile' => 'r,u',
         ],
-        'user' => [
-            'profile' => 'r,u',
-        ],
         'advertiser' => [
             'ads' => 'c,r,u,d',
             'profile' => 'r,u',
 
+        ],
+        'user' => [
+            'profile' => 'r,u',
         ],
     ],
 

@@ -3,7 +3,7 @@
 @section('content')
     <section class="single" style="padding-top: 150px">
         <div class="container">
-            <div class="row">
+            <div class="row" style="padding-top: 50px">
                 <div class="col-md-4 sidebar" id="sidebar">
 
                     <aside>
@@ -13,7 +13,7 @@
                                 <article class="article-mini">
                                     <div class="inner">
                                         <figure>
-                                            <a href="{{ route('show', $ad->id) }}">
+                                            <a href="{{ route('show', $ad1->id) }}">
                                                 <img src="{{ asset('ads/' . $ad1->media_url) }}">
                                             </a>
                                         </figure>

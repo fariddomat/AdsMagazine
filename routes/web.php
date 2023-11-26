@@ -70,6 +70,7 @@ Route::prefix('dashboard')
         Route::resource('users', UserController::class);
         Route::post('unban/{id}', [UserController::class, 'unban'])->name('users.unban');
         Route::post('ban/{id}', [UserController::class, 'ban'])->name('users.ban');
+        Route::post('active/{id}', [UserController::class, 'active'])->name('users.active');
 
         Route::get('about', [SettingController::class, 'about'])->name('about');
         Route::get('social', [SettingController::class, 'social'])->name('social');

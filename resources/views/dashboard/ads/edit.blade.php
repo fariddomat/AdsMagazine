@@ -45,6 +45,7 @@
                                         <select name="user_id" class="form-control" id="" disabled>
                                                 <option value="{{ Auth::user()->id }}">{{ Auth::user()->name }}</option>
                                         </select>
+                                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                         @else
                                         <select name="user_id" class="form-control" id="">
                                             @foreach ($users as $user)

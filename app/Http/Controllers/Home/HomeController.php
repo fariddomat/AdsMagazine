@@ -31,12 +31,14 @@ class HomeController extends Controller
         }
         $adsWithMostViews = Ad::where('status','approved')->orderByViews()->limit(4)->get();
         $adsWithMostClicks = Ad::where('status','approved')->orderByClicks()->limit(6)->get();
-
+        $adsWithMostContacts = Ad::withCount('contacts')
+        ->orderByDesc('contacts_count')
+        ->limit(6)->get();
         $userWithMostAdViews = User::withCount('ads', 'adViews')
             ->orderByDesc('ads_count')
             ->orderByDesc('ad_views_count')
             ->first();
-        return view('home.index', compact('ads', 'adsWithMostViews', 'adsWithMostClicks', 'userWithMostAdViews'));
+        return view('home.index', compact('ads', 'adsWithMostViews', 'adsWithMostClicks', 'userWithMostAdViews', 'adsWithMostContacts'));
     }
     public function categories()
     {
@@ -59,6 +61,7 @@ class HomeController extends Controller
     }
     public function search(Request $request)
     {
+        $categories=Category::all();
         $ads_count = Ad::count();
         if ($request->category_id != '') {
             $query = $request->category_id;
@@ -68,7 +71,7 @@ class HomeController extends Controller
             // dd($ads);
             $ads->appends(['category_id' => $request->input('category_id')]);
             $ads->appends(['search' => $request->input('search')]);
-            return view('home.search', compact('ads', 'ads_count'));
+            return view('home.search', compact('ads', 'ads_count', 'categories'));
         }
 
         if ($request->user_id != '') {
@@ -79,7 +82,7 @@ class HomeController extends Controller
             // dd($ads);
             $ads->appends(['user_id' => $request->input('user_id')]);
             $ads->appends(['search' => $request->input('search')]);
-            return view('home.search', compact('ads', 'ads_count'));
+            return view('home.search', compact('ads', 'ads_count', 'categories'));
         }
         $query = $request->input('search');
 
@@ -91,7 +94,7 @@ class HomeController extends Controller
             ->paginate(5);
         $ads->appends(['search' => $request->input('search')]);
 
-        return view('home.search', compact('ads', 'ads_count'));
+        return view('home.search', compact('ads', 'ads_count', 'categories'));
     }
     public function about()
     {
