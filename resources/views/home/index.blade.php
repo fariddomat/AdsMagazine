@@ -146,7 +146,7 @@
 
 
                     <aside>
-                        <h1 class="aside-title">Most Orderd Ads</h1>
+                        <h1 class="aside-title">Most Ordered Ads</h1>
                         <div class="aside-body">
                             @foreach ($adsWithMostContacts as $ad2)
                                 <article class="article-mini">

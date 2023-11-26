@@ -119,21 +119,22 @@
                                                             aria-hidden="true"></i> unBan</button>
                                                 </form>
                                                 @endif
-                                                @if ($user->status=='pending')
-                                                <form action="{{ route('dashboard.users.active', $user->id) }}" method="POST"
-                                                    style="display: inline-block">
-                                                    @csrf
-                                                    @method('post')
-                                                    <button type="submit" class="btn btn-outline-success"
-                                                        style="display: inline-block"> Activate</button>
-                                                </form>
-
-
-                                                @endif
                                             @else
                                                 <button class="btn btn-outline-danger  disabled" disabled
                                                     style="display: inline-block"><i class="fa fa-trash"
                                                         aria-hidden="true"></i> Delete</button>
+                                            @endif
+
+                                            @if ($user->status=='pending')
+                                            <form action="{{ route('dashboard.users.active', $user->id) }}" method="POST"
+                                                style="display: inline-block">
+                                                @csrf
+                                                @method('post')
+                                                <button type="submit" class="btn btn-outline-success"
+                                                    style="display: inline-block"> Activate</button>
+                                            </form>
+
+
                                             @endif
                                         </td>
                                     </tr>
