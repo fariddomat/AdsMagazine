@@ -18,23 +18,25 @@
                 </a>
             </li>
             @if (Auth::user()->hasRole('superadministrator|administrator|advertiser'))
+                <li class=" nav-item  {{ Request::is('dashboard/ads*') ? 'active' : '' }} "><a
+                        href="{{ route('dashboard.ads.index') }}"><i class="fa fa-film"></i><span class="menu-title"
+                            data-i18n="">Ads</span></a>
+                </li>
 
-            <li class=" nav-item  {{ Request::is('dashboard/ads*') ? 'active' : '' }} "><a
-                    href="{{ route('dashboard.ads.index') }}"><i class="fa fa-film"></i><span class="menu-title"
-                        data-i18n="">Ads</span></a>
-            </li>
-
-            <li class=" nav-item  {{ Request::is('dashboard/contacts*') ? 'active' : '' }} "><a
-                    href="{{ route('dashboard.contacts.index') }}"><i class="fa fa-phone"></i><span class="menu-title"
-                        data-i18n="">Contacts</span></a>
-            </li>
+                <li class=" nav-item  {{ Request::is('dashboard/contacts*') ? 'active' : '' }} "><a
+                        href="{{ route('dashboard.contacts.index') }}"><i class="fa fa-phone"></i><span
+                            class="menu-title" data-i18n="">Contacts</span></a>
+                </li>
             @endif
             @if (Auth::user()->hasRole('superadministrator|administrator'))
                 <li class=" nav-item  {{ Request::is('dashboard/categories*') ? 'active' : '' }} "><a
                         href="{{ route('dashboard.categories.index') }}"><i class="fa fa-building-o"></i><span
                             class="menu-title" data-i18n="">Categories</span></a>
                 </li>
-
+                <li class=" nav-item {{ Request::is('dashboard/coupons*') ? 'active' : '' }} "><a
+                        href="{{ route('dashboard.coupons.index') }}"><i class="fa fa-tags"></i><span
+                            class="menu-title" data-i18n="">Coupons</span></a>
+                </li>
                 <li class=" nav-item  {{ Request::is('dashboard/adSlots*') ? 'active' : '' }} "><a
                         href="{{ route('dashboard.adSlots.index') }}"><i class="fa fa-building-o"></i><span
                             class="menu-title" data-i18n="">Slots</span></a>
@@ -62,6 +64,7 @@
                         data-i18n="">Profile</span></a>
             </li>
         </ul>
-    </div><a class="btn btn-primary btn-block btn-glow btn-upgrade-pro mx-1" href="/" target="_blank">Home</a>
+    </div>
+    {{-- <a class="btn btn-primary btn-block btn-glow btn-upgrade-pro mx-1" href="/" target="_blank">Home</a> --}}
     <div class="navigation-background"></div>
 </div>

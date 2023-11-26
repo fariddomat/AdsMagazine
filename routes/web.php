@@ -4,6 +4,7 @@ use App\Http\Controllers\Dashboard\AdController;
 use App\Http\Controllers\Dashboard\AdSlotController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\ContactController;
+use App\Http\Controllers\Dashboard\CouponController;
 use App\Http\Controllers\Dashboard\HomeController as DashboardHomeController;
 use App\Http\Controllers\Dashboard\ProfileController as DashboardProfileController;
 use App\Http\Controllers\Dashboard\SettingController;
@@ -61,6 +62,7 @@ Route::prefix('dashboard')
         Route::get('/home', [DashboardHomeController::class, 'index'])->name('home');
 
         Route::resource('categories', CategoryController::class);
+        Route::resource('coupons', CouponController::class);
 
         Route::resource('adSlots', AdSlotController::class);
         Route::resource('ads', AdController::class);

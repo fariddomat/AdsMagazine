@@ -64,7 +64,8 @@
                                                 <option value="{{ $adSlot->id }}">{{ $adSlot->name }}</option>
                                             @endforeach
                                         </select>
-
+                                        <h5 class="mt-2">Coupons</h5>
+                                        <input type="text" class="form-control" name="coupon" value="{{ old('coupon') }}">
                                     </fieldset>
 
                                     <button class="btn btn-icon btn-info mr-1 mt-2"> Create <i class="fa fa-save"

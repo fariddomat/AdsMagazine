@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Ad;
 use App\Models\AdSlot;
 use App\Models\Category;
+use App\Models\Coupon;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,7 @@ class AdController extends Controller
      */
     public function index()
     {
-        $ads='';
+        $ads = '';
         if (auth()->user()->hasRole('advertiser')) {
             $ads = Ad::where('user_id', auth()->id())->latest()->paginate(10);
         } else {
@@ -61,9 +62,22 @@ class AdController extends Controller
             'ad_slot_id' => 'required|exists:ad_slots,id',
         ]);
 
+        $request_data = $request->except(['media', 'coupon']);
+
+        if ($request->coupon != null) {
+            $coupon = Coupon::where('code', $request->coupon)->where('expire_date', '>', now())->first();
+            if ($coupon) {
+                $request_data['coupon_id'] = $coupon->id;
+            } else {
+
+                session()->flash('status', 'Your Coupon have expired');
+                return redirect()->back()->withErrors(['coupon' => 'Your Coupon have expired'])
+                    ->withInput();;
+            }
+        }
 
 
-        $request_data = $request->except(['media']);
+
 
         if ($request->media) {
             $media = Image::make($request->media)->resize(671, 480)
@@ -73,7 +87,7 @@ class AdController extends Controller
         }
         // Create a new ad
         if (Auth::user()->status == 'active') {
-            $request_data['status']='approved';
+            $request_data['status'] = 'approved';
         }
         Ad::create($request_data);
 
