@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Ad extends Model
 {
@@ -77,6 +78,20 @@ class Ad extends Model
                 return $qu->where('user_id', auth()->user()->id);
             });
         });
+    }
+
+    public function scopeWhenApproved($query)
+    {
+        Ad::whereDoesntHave('ad_slot', function ($query) {
+            $query->where(DB::raw('DATE_ADD(ads.created_at, INTERVAL ad_slots.duration DAY)'), '>', now());
+        })->delete();
+
+        return $query->where('status', 'approved')
+            ->whereHas('ad_slot', function ($query) {
+                $query->where(DB::raw('DATE_ADD(ads.created_at, INTERVAL ad_slots.duration DAY)'), '>', now())
+                    ->orderByDesc('ad_slots.price');
+            })
+            ->orderBy('ads.created_at', 'desc');
     }
 
 }
