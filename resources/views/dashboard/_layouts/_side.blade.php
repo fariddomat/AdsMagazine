@@ -63,8 +63,11 @@
                     href="{{ route('dashboard.profile.edit') }}"><i class="ft-users"></i><span class="menu-title"
                         data-i18n="">Profile</span></a>
             </li>
+            <li>
+
+    <a class="btn btn-primary btn-block btn-glow btn-upgrade-pro mx-1" href="/" target="_blank">Home</a>
+            </li>
         </ul>
     </div>
-    {{-- <a class="btn btn-primary btn-block btn-glow btn-upgrade-pro mx-1" href="/" target="_blank">Home</a> --}}
     <div class="navigation-background"></div>
 </div>

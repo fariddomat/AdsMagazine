@@ -24,7 +24,7 @@ class AuthenticatedSessionController extends Controller
     }
 
 
- 
+
     /**
      * Handle an incoming authentication request.
      */
@@ -34,6 +34,9 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if (Auth::user()->hasRole('user')) {
+            return redirect()->route('home.index');
+        }
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
