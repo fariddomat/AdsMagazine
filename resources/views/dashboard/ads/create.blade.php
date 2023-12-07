@@ -21,7 +21,7 @@
                                             class="form-control" id="basicInput" required>
 
                                         <h5 class="mt-2">Description</h5>
-                                        <textarea name="description" id="" class="form-control">
+                                        <textarea name="description" id="editor" class="form-control editor">
                                         {{ old('description') }}
                                         </textarea>
 
@@ -41,16 +41,16 @@
                                     <fieldset class="form-group">
                                         <h5 class="mt-2">User</h5>
                                         @if (Auth::user()->hasRole('advertiser'))
-                                        <select name="user_id" class="form-control" id="" disabled>
+                                            <select name="user_id" class="form-control" id="" disabled>
                                                 <option value="{{ Auth::user()->id }}">{{ Auth::user()->name }}</option>
-                                        </select>
-                                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                            </select>
+                                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                         @else
-                                        <select name="user_id" class="form-control" id="">
-                                            @foreach ($users as $user)
-                                                <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                            @endforeach
-                                        </select>
+                                            <select name="user_id" class="form-control" id="">
+                                                @foreach ($users as $user)
+                                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                @endforeach
+                                            </select>
                                         @endif
                                         <h5 class="mt-2">Category</h5>
                                         <select name="category_id" class="form-control" id="">
@@ -65,14 +65,15 @@
                                             @endforeach
                                         </select>
                                         <h5 class="mt-2">Coupons</h5>
-                                        <input type="text" class="form-control" name="coupon" value="{{ old('coupon') }}">
+                                        <input type="text" class="form-control" name="coupon"
+                                            value="{{ old('coupon') }}">
                                         <h5 class="mt-2">Media Files</h5>
                                         <input type="file" class="form-control" name="files[]" multiple value="">
 
                                     </fieldset>
 
                                     <button class="btn btn-icon btn-info mr-1 mt-2"> Create <i class="fa fa-save"
-                                        style="position: relative"></i></button>
+                                            style="position: relative"></i></button>
                                 </div>
                             </div>
                         </form>
@@ -84,3 +85,19 @@
     </section>
     <!-- Basic Inputs end -->
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+
+    <script>
+        $(function() {
+            CKEDITOR.replace("editor", {
+                filebrowserBrowseUrl: '/uploads',
+                filebrowserUploadUrl: '/uploads' +
+                    "?_token=" +
+                    $("meta[name=csrf-token]").attr("content"),
+                removeButtons: "About"
+            });
+        });
+    </script>
+@endpush

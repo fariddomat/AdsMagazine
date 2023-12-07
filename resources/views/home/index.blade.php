@@ -69,7 +69,7 @@
                                                 <h2><a href="{{ route('show', $ad->id) }}">{{ $ad->title }}</a></h2>
 
                                         <h2><a href="{{ route('search', ['user_id'=> $ad->user_id]) }}">By : {{ $ad->user->name }}</a></h2>
-                                                <p>{{ $ad->description }}</p>
+                                                <p>{!! $ad->description !!}</p>
                                                 <footer>
 
                                                     <a class="btn btn-primary more" href="{{ route('show', $ad->id) }}">
@@ -136,7 +136,7 @@
                                             </div>
                                         </div>
                                         <div class="featured-author-quote">
-                                            {{ $userWithMostAdViews->description }}
+                                            {!! $userWithMostAdViews->description !!}
                                         </div>
                                     </div>
                                 </div>
@@ -202,7 +202,7 @@
                                     <div class="category"><a>{{ $ad->category->name }}</a></div>
                                 </div>
                                 <h2><a href="{{ route('show', $ad->id) }}">{{ $ad->title }}</a></h2>
-                                <p>{{ $ad->description }}</p>
+                                <p>{!! $ad->description !!}</p>
                             </div>
                         </div>
                     </article>

@@ -22,7 +22,7 @@
                                             class="form-control" id="basicInput" required>
 
                                         <h5 class="mt-2">Description</h5>
-                                        <textarea name="description" id="" class="form-control">
+                                        <textarea name="description" id="editor" class="form-control editor">
                                         {{ old('description', $ad->description) }}
                                         </textarea>
                                         <h5 class="mt-2">Price</h5>
@@ -114,3 +114,20 @@
     </section>
     <!-- Basic Inputs end -->
 @endsection
+
+
+@push('scripts')
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+
+    <script>
+        $(function() {
+            CKEDITOR.replace("editor", {
+                filebrowserBrowseUrl: '/uploads',
+                filebrowserUploadUrl: '/uploads' +
+                    "?_token=" +
+                    $("meta[name=csrf-token]").attr("content"),
+                removeButtons: "About"
+            });
+        });
+    </script>
+@endpush

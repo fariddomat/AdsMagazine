@@ -70,10 +70,13 @@
                                         </div>
                                     @endforeach
                                 @else
+                                @if ($ad->ad_medias->count() > 0)
                                     <div class="col-md-6">
                                         <img class="post-img" src="/files/{{ $ad->id . '/' . $ad->ad_medias->first()->media }}" alt=""
                                             style="width: 100%">
                                     </div>
+
+                                @endif
                                 @endif
 
                             </div>

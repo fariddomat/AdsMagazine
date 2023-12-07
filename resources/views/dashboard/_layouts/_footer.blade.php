@@ -116,3 +116,6 @@
         });
     });
 </script>
+
+
+@stack('scripts')
