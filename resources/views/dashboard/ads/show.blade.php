@@ -26,8 +26,7 @@
                                         class="form-control" id="basicInput" required disabled>
 
                                     <h5 class="mt-2">Media (Image)</h5>
-                                    <img src="{{ asset('ads/' . $ad->media_url) }}" alt=""
-                                        style="max-width: 250px">
+                                    <img src="{{ asset('ads/' . $ad->media_url) }}" alt="" style="max-width: 250px">
 
 
                                 </fieldset>
@@ -72,6 +71,31 @@
                                             class="btn btn-icon btn-danger mr-1" style="  min-width: 100px;">Reject</a>
                                     @endif
                                 @endif
+
+                                All Media
+                                @if ($ad->withVideo())
+                                    <video
+                                        style="margin-top: 25px;margin-bottom: 15px;
+                                            border-radius: 10px;"
+                                        src="/files/{{ $ad->id . '/' . $ad->withVideo() }}" controls></video>
+                                @endif
+                                <div class="row" style="margin-top: 50px;">
+                                    @if ($ad->hasMoreThanOneImage())
+                                        @foreach ($ad->ad_medias as $item)
+                                            <div class="col-md-3">
+                                                <img class="image responsive"
+                                                    src="/files/{{ $ad->id . '/' . $item->media }}" alt="image"
+                                                    style="  width: 100%;" />
+                                            </div>
+                                        @endforeach
+                                    @else
+                                        <div class="col-md-6">
+                                            <img class="post-img" src="/files/{{ $ad->id . '/' . $ad->ad_medias->first()->media }}" alt=""
+                                                style="width: 100%">
+                                        </div>
+                                    @endif
+
+                                </div>
                             </div>
                         </div>
                     </div>

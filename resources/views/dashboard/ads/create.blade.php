@@ -66,6 +66,9 @@
                                         </select>
                                         <h5 class="mt-2">Coupons</h5>
                                         <input type="text" class="form-control" name="coupon" value="{{ old('coupon') }}">
+                                        <h5 class="mt-2">Media Files</h5>
+                                        <input type="file" class="form-control" name="files[]" multiple value="">
+
                                     </fieldset>
 
                                     <button class="btn btn-icon btn-info mr-1 mt-2"> Create <i class="fa fa-save"

@@ -22,9 +22,57 @@ class Ad extends Model
         return $this->belongsTo(Category::class);
     }
 
+
     public function ad_slot()
     {
         return $this->belongsTo(AdSlot::class);
+    }
+
+    public function ad_medias()
+    {
+        return $this->hasMany(AdMedia::class);
+    }
+
+    public function withVideo()
+    {
+        // ->extension()
+        if ($this->ad_medias()->exists()) {
+            foreach ($this->ad_medias as $key => $value) {
+                // $ext = pathinfo($value->file, PATHINFO_EXTENSION);
+                $lastDotPos = strrpos($value->media, '.');
+                if (!$lastDotPos) return false;
+                $extension = substr($value->media, $lastDotPos + 1);
+                $allowedfileExtension = ['mp4', 'mkv', 'avi'];
+                $check = in_array($extension, $allowedfileExtension);
+                if ($check) {
+                    return $value->media;
+                }
+            }
+        }
+        return false;
+    }
+
+    public function hasMoreThanOneImage()
+    {
+        $count = 0;
+        if ($this->ad_medias()->exists()) {
+            foreach ($this->ad_medias as $key => $value) {
+                // $ext = pathinfo($value->file, PATHINFO_EXTENSION);
+                $lastDotPos = strrpos($value->media, '.');
+                if (!$lastDotPos) return false;
+                $extension = substr($value->media, $lastDotPos + 1);
+                $allowedfileExtension = ['jpg', 'png', 'gif', 'webp'];
+                $check = in_array($extension, $allowedfileExtension);
+                if ($check) {
+                    $count++;
+                }
+            }
+        }
+        if ($count > 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function ad_clicks()

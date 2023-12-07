@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Ad;
+use App\Models\AdMedia;
 use App\Models\AdSlot;
 use App\Models\Category;
 use App\Models\Coupon;
@@ -62,7 +63,7 @@ class AdController extends Controller
             'ad_slot_id' => 'required|exists:ad_slots,id',
         ]);
 
-        $request_data = $request->except(['media', 'coupon']);
+        $request_data = $request->except(['media', 'coupon', 'files']);
 
         if ($request->coupon != null) {
             $coupon = Coupon::where('code', $request->coupon)->where('expire_date', '>', now())->first();
@@ -89,8 +90,35 @@ class AdController extends Controller
         if (Auth::user()->status == 'active') {
             $request_data['status'] = 'approved';
         }
-        Ad::create($request_data);
+        $ad=Ad::create($request_data);
 
+
+        if ($request->hasFile('files')) {
+
+            $allowedfileExtension = ['jpg', 'png', 'gif', 'webp','mp4', 'avi', 'mkv'];
+            $files = $request->file('files');
+            $check = 'False';
+            foreach ($files as $file) {
+                $filename = $file->getClientOriginalName();
+                $extension = $file->getClientOriginalExtension();
+                $check = in_array($extension, $allowedfileExtension);
+                //dd($check);
+            }
+            if ($check) {
+                foreach ($request->file('files') as $file) {
+                    $filename = $file->getClientOriginalName();
+                    $file->move(public_path() . '/files/' . $ad->id . '/', $filename);
+                    // $filename = $file->store('public/files');
+                    AdMedia::create([
+                        'ad_id' => $ad->id,
+                        'media' => $filename
+                    ]);
+                }
+                echo "Upload Successfully";
+            } else {
+                echo '<div class="alert alert-warning"><strong>Warning!</strong> Sorry Only Upload png , jpg, webp, mp4, avi, mkv</div>';
+            }
+        }
         // Redirect to the ads index page or any other desired route
         return redirect()->route('dashboard.ads.index')->with('success', 'Ad created successfully');
     }
@@ -138,7 +166,7 @@ class AdController extends Controller
             'ad_slot_id' => 'required|exists:ad_slots,id',
         ]);
 
-        $request_data = $request->except(['media']);
+        $request_data = $request->except(['media', 'files']);
 
         if ($request->media) {
             Storage::disk('public')->delete('ads/' . $ad->media_url);
@@ -149,7 +177,35 @@ class AdController extends Controller
         }
         // Update ad
         $ad->update($request_data);
-
+        if ($request->hasFile('files')) {
+            $medias=AdMedia::where('ad_id', $ad->id)->get();
+            foreach ($medias as $key => $media) {
+                $media->delete();
+            }
+            $allowedfileExtension = ['jpg', 'png', 'gif', 'webp','mp4', 'avi', 'mkv'];
+            $files = $request->file('files');
+            $check = 'False';
+            foreach ($files as $file) {
+                $filename = $file->getClientOriginalName();
+                $extension = $file->getClientOriginalExtension();
+                $check = in_array($extension, $allowedfileExtension);
+                //dd($check);
+            }
+            if ($check) {
+                foreach ($request->file('files') as $file) {
+                    $filename = $file->getClientOriginalName();
+                    $file->move(public_path() . '/files/' . $ad->id . '/', $filename);
+                    // $filename = $file->store('public/files');
+                    AdMedia::create([
+                        'ad_id' => $ad->id,
+                        'media' => $filename
+                    ]);
+                }
+                echo "Upload Successfully";
+            } else {
+                echo '<div class="alert alert-warning"><strong>Warning!</strong> Sorry Only Upload png , jpg, webp, mp4, avi, mkv</div>';
+            }
+        }
         // Redirect to the ads index page or any other desired route
         return redirect()->route('dashboard.ads.index')->with('success', 'Ad Updated successfully');
     }

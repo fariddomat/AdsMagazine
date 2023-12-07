@@ -54,6 +54,30 @@
                             </div>
 
                             <div>{!! $ad->description !!}</div>
+
+                            @if ($ad->withVideo())
+                                <video
+                                    style="margin-top: 25px;margin-bottom: 15px;
+                                            border-radius: 10px;"
+                                    src="/files/{{ $ad->id . '/' . $ad->withVideo() }}" controls></video>
+                            @endif
+                            <div class="row" style="margin-top: 50px;">
+                                @if ($ad->hasMoreThanOneImage())
+                                    @foreach ($ad->ad_medias as $item)
+                                        <div class="col-md-3">
+                                            <img class="image responsive" src="/files/{{ $ad->id . '/' . $item->media }}"
+                                                alt="image" style="  width: 100%;" />
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <div class="col-md-6">
+                                        <img class="post-img" src="/files/{{ $ad->id . '/' . $ad->ad_medias->first()->media }}" alt=""
+                                            style="width: 100%">
+                                    </div>
+                                @endif
+
+                            </div>
+
                         </div>
                         <footer>
                             <div class="col">
