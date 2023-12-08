@@ -18,8 +18,8 @@
                                         class="form-control" id="basicInput" required disabled>
 
                                     <h5 class="mt-2">Description</h5>
-                                    <textarea name="description" id="" class="form-control" disabled>
-                                        {{ old('description', $ad->description) }}
+                                    <textarea name="description" id="editor" class="form-control editor" disabled>
+                                        {!!  $ad->description !!}
                                         </textarea>
                                     <h5 class="mt-2">Price</h5>
                                     <input value="{{ old('price', $ad->price) }}" name="price" type="number"
@@ -76,7 +76,7 @@
                                 @if ($ad->withVideo())
                                     <video
                                         style="margin-top: 25px;margin-bottom: 15px;
-                                            border-radius: 10px;"
+                                            border-radius: 10px; width: 100%"
                                         src="/files/{{ $ad->id . '/' . $ad->withVideo() }}" controls></video>
                                 @endif
                                 <div class="row" style="margin-top: 50px;">
@@ -90,7 +90,7 @@
                                         @endforeach
                                     @else
                                         <div class="col-md-6">
-                                            <img class="post-img" src="/files/{{ $ad->id . '/' . $ad->ad_medias->first()->media }}" alt=""
+                                            <img class="post-img" src="{{ $ad->image_path }}" alt=""
                                                 style="width: 100%">
                                         </div>
                                     @endif
@@ -106,3 +106,19 @@
     </section>
     <!-- Basic Inputs end -->
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+
+    <script>
+        $(function() {
+            CKEDITOR.replace("editor", {
+                filebrowserBrowseUrl: '/uploads',
+                filebrowserUploadUrl: '/uploads' +
+                    "?_token=" +
+                    $("meta[name=csrf-token]").attr("content"),
+                removeButtons: "About"
+            });
+        });
+    </script>
+@endpush

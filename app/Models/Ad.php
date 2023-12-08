@@ -75,6 +75,22 @@ class Ad extends Model
         }
     }
 
+    public function getImagePathAttribute()
+    {
+        if ($this->ad_medias()->exists()) {
+            foreach ($this->ad_medias as $key => $value) {
+                // $ext = pathinfo($value->file, PATHINFO_EXTENSION);
+                $lastDotPos = strrpos($value->media, '.');
+                if (!$lastDotPos) return false;
+                $extension = substr($value->media, $lastDotPos + 1);
+                $allowedfileExtension = ['jpg', 'png', 'gif', 'webp'];
+                $check = in_array($extension, $allowedfileExtension);
+                if ($check) {
+                    return asset('files/' . $this->id . '/' . $value->media);
+                }
+            }
+        }
+    }
     public function ad_clicks()
     {
         return $this->hasMany(AdClick::class);

@@ -58,7 +58,7 @@
                             @if ($ad->withVideo())
                                 <video
                                     style="margin-top: 25px;margin-bottom: 15px;
-                                            border-radius: 10px;"
+                                            border-radius: 10px; width:100%"
                                     src="/files/{{ $ad->id . '/' . $ad->withVideo() }}" controls></video>
                             @endif
                             <div class="row" style="margin-top: 50px;">
@@ -72,7 +72,7 @@
                                 @else
                                 @if ($ad->ad_medias->count() > 0)
                                     <div class="col-md-6">
-                                        <img class="post-img" src="/files/{{ $ad->id . '/' . $ad->ad_medias->first()->media }}" alt=""
+                                        <img class="post-img" src="{{ $ad->image_path }}" alt=""
                                             style="width: 100%">
                                     </div>
 
