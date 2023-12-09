@@ -27,10 +27,12 @@ class AdController extends Controller
     {
         $ads = '';
         if (auth()->user()->hasRole('advertiser')) {
-            $ads = Ad::where('user_id', auth()->id())->latest()->paginate(10);
+            $ads = Ad::whenSearch(request()->search)
+            ->where('user_id', auth()->id())->latest()->paginate(10);
         } else {
 
-            $ads = Ad::latest()->paginate(10);
+            $ads = Ad::whenSearch(request()->search)
+            ->latest()->paginate(10);
         }
         return view('dashboard.ads.index', compact('ads'));
     }
@@ -174,6 +176,12 @@ class AdController extends Controller
                 ->encode('webp', 90);
             Storage::disk('public')->put('ads/' . $request->media->hashName(), (string)$media, 'public');
             $request_data['media_url'] = $request->media->hashName();
+        }
+
+        if (Auth::user()->status == 'active') {
+            $request_data['status'] = 'approved';
+        }else {
+            $request_data['status'] = 'pending';
         }
         // Update ad
         $ad->update($request_data);

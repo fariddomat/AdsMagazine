@@ -25,6 +25,7 @@
     </div>
     <!-- ////////////////////////////////////////////////////////////////////////////-->
 
+    @extends('dashboard._layouts._noty')
     @include('dashboard._layouts._footer')
 
 </body>

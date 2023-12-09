@@ -14,7 +14,10 @@
                 <p class="page-subtitle">We will tell you who we are</p>
                 <div class="line thin"></div>
                 <div class="page-description">
-
+                    <section>
+                        <h2>{{ setting('site_name') }}</h2>
+                        <p>{{ setting('site_about') }}</p>
+                    </section>
                     <section>
                         <h2>Our Mission</h2>
                         <p>At Ads Magazine, our mission is to connect businesses and individuals with their target audience through effective and engaging advertising. We believe in the power of advertising to create opportunities and foster growth for both advertisers and consumers.</p>

@@ -53,6 +53,7 @@
                                 </figure>
                             </div>
 
+                            <h3>Price : {{ $ad->price }}</h3>
                             <div>{!! $ad->description !!}</div>
 
                             @if ($ad->withVideo())

@@ -20,12 +20,11 @@
                             <p>
                                 Contact with advistor to ask about ads or contact the adminstration</p>
                             <p>
-                                Phone: <span class="bold">+123 45 678 9</span> <br>
-                                Email: <span class="bold">hi@yourcompany.com</span>
+                                Phone: <span class="bold">{{ setting('site_phone') }}</span> <br>
+                                Email: <span class="bold">{{ setting('site_email') }}</span>
                                 <br>
                                 <br>
-                                Syarifuddin Street<br>
-                                Indonesia, Bogor Barat 16115
+                                {{ setting('site_location') }}
                             </p>
                         </div>
                         <div class="col-md-6 col-sm-6">

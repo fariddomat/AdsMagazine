@@ -12,7 +12,7 @@ if(localStorage.getItem("skin")) {
  	document.getElementsByTagName("body")[0].classList = document.getElementsByTagName("body")[0].className.replace(/(^|\s)skin-\S+/g, '');
 	document.getElementsByTagName("body")[0].classList += " skin-" + localStorage.getItem("skin");
 
-}
+} 
 
 if(localStorage.getItem("bg")) {
     document.getElementsByClassName("firstbar")[0].classList = document.getElementsByClassName("firstbar")[0].className.replace(/(^|\s)bg-\S+/g, '');
