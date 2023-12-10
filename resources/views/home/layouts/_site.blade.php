@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="{{ asset('home/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('home/css/skins/all.css') }}">
     <link rel="stylesheet" href="{{ asset('home/css/demo.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('noty/noty.css') }}">
     <style>
         .firstbar {
             background-color: #F73F52
@@ -102,9 +104,9 @@
                                         <div>logout</div>
                                     </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                                 </li>
                             @else
                                 <li><a href="{{ route('register') }}"><i class="ion-person-add"></i>
@@ -185,7 +187,7 @@
                                 @php
                                     $social_sites = ['facebook', 'whatsapp', 'youtube', 'snapchat', 'twitter', 'instagram'];
                                 @endphp
-                                 @foreach ($social_sites as $social_site)
+                                @foreach ($social_sites as $social_site)
                                     <li>
                                         <a href="{{ setting($social_site . '_link') }}" class="{{ $social_site }}">
                                             <svg>
@@ -387,6 +389,10 @@
         })(jQuery);
     </script>
     @stack('scripts')
+
+    <script src="{{ asset('noty/noty.min.js') }}" defer></script>
+    @extends('dashboard._layouts._noty')
+
 </body>
 
 </html>

@@ -14,22 +14,28 @@ class ContactController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['role:superadministrator|administrator|advertiser']);
+        $this->middleware(['role:superadministrator|administrator|advertiser|user']);
     }
-    public function index(){
+    public function index()
+    {
 
         if (auth()->user()->hasRole('advertiser')) {
-           $contacts=Auth::user()->ads()->with('contacts')->get()->flatMap(function ($ad) {
-            return $ad->contacts;
-        });
-           return view('dashboard.contacts.index', compact('contacts'));
+            $contacts = Auth::user()->ads()->with('contacts')->get()->flatMap(function ($ad) {
+                return $ad->contacts;
+            });
+            return view('dashboard.contacts.index', compact('contacts'));
         }
-        $contacts=Contact::latest()->get();
+        if (auth()->user()->hasRole('user')) {
+            $contacts = Contact::where('email', auth()->user()->email)->latest()->get();
+            return view('dashboard.contacts.index', compact('contacts'));
+        }
+        $contacts = Contact::latest()->get();
         return view('dashboard.contacts.index', compact('contacts'));
     }
 
-    public function view($id){
-        $contact=Contact::findOrFail($id);
+    public function view($id)
+    {
+        $contact = Contact::findOrFail($id);
         $contact->update([
             'status' => 'Done'
         ]);

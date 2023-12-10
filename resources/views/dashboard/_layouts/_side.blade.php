@@ -23,11 +23,11 @@
                             data-i18n="">Ads</span></a>
                 </li>
 
+            @endif
                 <li class=" nav-item  {{ Request::is('dashboard/contacts*') ? 'active' : '' }} "><a
                         href="{{ route('dashboard.contacts.index') }}"><i class="fa fa-phone"></i><span
                             class="menu-title" data-i18n="">Contacts</span></a>
                 </li>
-            @endif
             @if (Auth::user()->hasRole('superadministrator|administrator'))
                 <li class=" nav-item  {{ Request::is('dashboard/categories*') ? 'active' : '' }} "><a
                         href="{{ route('dashboard.categories.index') }}"><i class="fa fa-building-o"></i><span

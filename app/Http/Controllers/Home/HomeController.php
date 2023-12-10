@@ -111,6 +111,8 @@ class HomeController extends Controller
             'message' => 'required',
         ]);
         Contact::create($request->all());
+        session()->flash('success','email sent Successfully !');
+
         return redirect()->route('home.index');
     }
     public function pricing()
